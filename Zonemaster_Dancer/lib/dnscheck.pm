@@ -11,7 +11,7 @@ use Client;
 
 use FindBin qw($RealScript $Script $RealBin $Bin);
 ##################################################################
-my $PROJECT_NAME = "Zonemaster-GUI/Zonemaster_Dancer";
+my $PROJECT_NAME = "zonemaster-gui/Zonemaster_Dancer";
 
 my $SCRITP_DIR = __FILE__;
 $SCRITP_DIR = $Bin unless ($SCRITP_DIR =~ /^\//);
@@ -128,7 +128,7 @@ get '/result' => sub {
 get '/faq' => sub {
 	my %allparams = params;
 	$allparams{lang} =~ s/sw/sv/;
-	my $md = read_file("$PROD_DIR/docs/documentation/gui-faq-$allparams{lang}.md");
+	my $md = read_file("$PROD_DIR/zonemaster/docs/documentation/gui-faq-$allparams{lang}.md");
 	my $html = decode_utf8(markdown($md));
 	return to_json ({ FAQ_CONTENT => $html }, {allow_blessed => 1, convert_blessed => 1});
 };
