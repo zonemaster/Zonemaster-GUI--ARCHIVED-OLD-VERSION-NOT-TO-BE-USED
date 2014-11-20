@@ -11,7 +11,7 @@ use Client;
 
 use FindBin qw($RealScript $Script $RealBin $Bin);
 ##################################################################
-my $PROJECT_NAME = "Zonemaster-GUI/Zonemaster_Dancer";
+my $PROJECT_NAME = "zonemaster-gui/Zonemaster_Dancer";
 
 my $SCRITP_DIR = __FILE__;
 $SCRITP_DIR = $Bin unless ($SCRITP_DIR =~ /^\//);
