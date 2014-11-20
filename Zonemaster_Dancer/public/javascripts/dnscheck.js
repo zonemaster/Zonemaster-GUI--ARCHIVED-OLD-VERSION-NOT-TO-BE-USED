@@ -8,9 +8,11 @@ dnscheck.factory('customLoader', function ($http, $q, $timeout) {
     var deferred = $q.defer(); 
     var data = {
     };
-    $http.get('/lang/' + options.key + '.json').success(function(interface_language_data){
+	var lang = options.key;
+	if (lang == 'sv') lang = 'sw';
+    $http.get('/lang/' + lang + '.json').success(function(interface_language_data){
 		angular.extend(data, interface_language_data);
-		$http.get('/faq?lang=' + options.key ).success(function(faq){
+		$http.get('/faq?lang=' + lang ).success(function(faq){
 			angular.extend(data, faq);
 			deferred.resolve(data);
 		});
@@ -22,7 +24,7 @@ dnscheck.factory('customLoader', function ($http, $q, $timeout) {
 
 dnscheck.config(function($translateProvider) {
 	$translateProvider.useLoader('customLoader');
-	$translateProvider.preferredLanguage(navigator.language.substring(0, 2) || navigator.userLanguage.substring(0, 2) );
+	$translateProvider.preferredLanguage(navigator.languages ? navigator.languages[0].substring(0, 2) : (navigator.language.substring(0, 2) || navigator.userLanguage.substring(0, 2)));
 });
 
 dnscheck.filter("asDate", function () {
@@ -109,7 +111,7 @@ dnscheck.directive('domainCheck',function(){
         $scope.form.ipv4 = true;
         $scope.form.ipv6 = true;
         $scope.location = $window.location.href;
-        if(typeof $rootScope.language === 'undefined') $rootScope.language = navigator.language.substring(0, 2) || navigator.userLanguage.substring(0, 2);
+        if(typeof $rootScope.language === 'undefined') $rootScope.language = navigator.languages ? navigator.languages[0].substring(0, 2) : (navigator.language.substring(0, 2) || navigator.userLanguage.substring(0, 2));
 
         if($scope.inactive) {
           $scope.contentUrl = '/ang/inactive_domain_check'
