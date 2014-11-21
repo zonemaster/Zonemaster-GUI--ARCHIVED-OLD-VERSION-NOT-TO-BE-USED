@@ -160,6 +160,7 @@ a.header-a {
   background:white;
   border-radius: 5px;
   width     : 100%;
+  min-width : 500px;
   min-height: 150px;
   color     : black;
   padding   : 2em;
