@@ -177,6 +177,11 @@ a.header-a {
   top         : 40px;
   left        : -25px;
 }
+
+.history-error, .history-critical { color:red; }
+.history-warning { color:#F88017; }
+.history-ok { color:green; }
+
 .nl { display: block; text-align: left;margin-bottom:1px;padding:2px;}
 .result .alert{ padding:3px;}
 .alert-critical,.alert-error { background: red;}
