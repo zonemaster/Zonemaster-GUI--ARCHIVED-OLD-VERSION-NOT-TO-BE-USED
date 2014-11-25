@@ -2,6 +2,8 @@
   <div class="col-xs-10 col-sm-7 col-md-6 col-lg-4">
     <div class="alert alert-info">
       {{'Notice! This is an undelegated test'|translate}}
+      <br>
+      <a href="" ng-click="showFAQ()">{{'What is an undelegated domain test?'|translate}}</a>
     </div>
   </div>
 </div>

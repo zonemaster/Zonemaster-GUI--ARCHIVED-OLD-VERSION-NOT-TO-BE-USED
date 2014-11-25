@@ -58,7 +58,7 @@ dnscheck.directive('navigation',function(){
     restrict: 'E',
     transclude: true,
     scope: { navId: '@', inverse: '@' },
-    controller: function($scope){
+    controller: ['$rootScope', '$scope', function($rootScope, $scope){
       var panes = $scope.panes = [];
       $scope.select = function(pane) {
         angular.forEach(panes, function(pane) {
@@ -68,7 +68,7 @@ dnscheck.directive('navigation',function(){
         $scope.currentTab = pane.tabId;
         $scope.$parent[$scope.navId+'_currentTab'] = pane.tabId;
       };
-
+	  
       this.addPane = function(pane) {
         var c = 0;
         if(typeof t_res !== 'undefined' && typeof t_res.params.nameservers === 'undefined' && $scope.navId=='main'){
@@ -81,8 +81,11 @@ dnscheck.directive('navigation',function(){
           $scope.select(pane);
         }
         panes.push(pane);
+		if ($scope.navId == 'main') {
+			$rootScope.panes = panes;
+		}
       };
-    },
+    }],
     templateUrl: '/ang/navigation'
   };
 });
@@ -105,7 +108,7 @@ dnscheck.directive('domainCheck',function(){
     restrict: 'E',
     transclude: true,
     scope : { inactive: '@'},
-    controller: ['$rootScope', '$scope', '$window', function($rootScope, $scope, $window){
+    controller: ['$rootScope', '$scope', '$window', '$location', function($rootScope, $scope, $window, $location){
         $scope.interval = 5000; // 5 sec retry
         $scope.form = {};
         $scope.form.ipv4 = true;
@@ -251,6 +254,13 @@ dnscheck.directive('domainCheck',function(){
           $scope.ds_list.splice(idx,1);
         };
 
+        $scope.showFAQ = function(idx){
+			$rootScope.panes[1].selected = false;
+			$rootScope.panes[2].selected = true;
+			$rootScope.main_currentTab = 'faq';
+			$location.hash('undelegated');
+        };
+		
         $scope.showResult = function(){
           $('.run-btn-icon').addClass('fa-play-circle-o').removeClass('loading');
           $.ajax('/result',{
