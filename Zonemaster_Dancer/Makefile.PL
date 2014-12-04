@@ -14,6 +14,7 @@ WriteMakefile(
     PL_FILES            => {},
     PREREQ_PM => {
         'Starman' => 0,
+        'Template' => 0,
         'LWP::UserAgent' => 0,
         'Time::HiRes' => 0,
         'Plack::Builder' => 0,
@@ -28,5 +29,5 @@ WriteMakefile(
         'Dancer'     => 1.3095,
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-    clean               => { FILES => 'dnscheck-*' },
+    clean               => { FILES => 'Zonemaster_Dancer-*' },
 );
