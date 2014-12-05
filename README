@@ -13,7 +13,7 @@ Follow the detailed installation instructions: Zonemaster_Dancer/Doc/zonemaster-
 Prerequisites
 =============
 
-The other modules needed to run the Zonemaster engine are listed in Makefile.PL as usual. 
+The other modules needed to run the Zonemaster GUI Frontend are listed in Makefile.PL as usual. 
 
 Documentation
 =============
