@@ -1,24 +1,32 @@
 #!/usr/bin/env perl
 use Dancer;
 use Plack::Builder;
-#use PocketIO;
 use Plack::App::File;
-use dnscheck;
-#use sockets;
-use zonemaster_nojs;
-use FindBin;
+use FindBin qw($RealScript $Script $RealBin $Bin);;
 
-#my $websockets = PocketIO->new(class => 'sockets', method => 'run');
+##################################################################
+my $PROJECT_NAME = "zonemaster-gui/Zonemaster_Dancer";
+
+my $SCRITP_DIR = __FILE__;
+$SCRITP_DIR = $Bin unless ($SCRITP_DIR =~ /^\//);
+
+my ($PROD_DIR) = ($SCRITP_DIR =~ /(.*?\/)$PROJECT_NAME/);
+
+my $PROJECT_BASE_DIR = $PROD_DIR.$PROJECT_NAME."/";
+unshift(@INC, $PROJECT_BASE_DIR);
+##################################################################
+
+unshift(@INC, $PROD_DIR."lib") unless $INC{$PROD_DIR."lib"};
+require Zonemaster::GUI::Dancer::Frontend;
+require Zonemaster::GUI::Dancer::NoJsFrontend;
+
 
 my $app = sub {
     my $env = shift;
- #   $env->{ws} = $websockets;
     my $request = Dancer::Request->new( env => $env );
     Dancer->dance($request);
 };
 
 builder {
-#    mount '/socket.io' => $websockets;
-
     mount "/" => builder {$app};
 };

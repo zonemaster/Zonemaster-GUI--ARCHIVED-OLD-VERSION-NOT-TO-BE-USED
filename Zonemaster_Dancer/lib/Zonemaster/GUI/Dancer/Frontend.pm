@@ -1,4 +1,4 @@
-package dnscheck;
+package Zonemaster::GUI::Dancer::Frontend;
 
 use Dancer ':syntax';
 use Plack::Builder;
@@ -7,7 +7,7 @@ use Encode;
 use Text::Markdown 'markdown';
 use File::Slurp;
 
-use Client;
+use Zonemaster::GUI::Dancer::Client;
 
 use FindBin qw($RealScript $Script $RealBin $Bin);
 ##################################################################
@@ -46,7 +46,7 @@ get '/ang/:file' => sub {
 };
 
 get '/test/:id' => sub {
-  my $c = Client->new({url => $url });
+  my $c = Zonemaster::GUI::Dancer::Client->new({url => $url });
   
   my $lang = request->{'accept_language'};
   $lang=~s/,.*$//;
@@ -55,7 +55,7 @@ get '/test/:id' => sub {
 };
 
 get '/parent' => sub {
-  my $c = Client->new({url => $url });
+  my $c = Zonemaster::GUI::Dancer::Client->new({url => $url });
   
   my $result = $c->get_data_from_parent_zone_1( param('domain') );
   debug Dumper($result);
@@ -64,7 +64,7 @@ get '/parent' => sub {
 };
 
 get '/version' => sub {
-  my $c = Client->new({url => $url });
+  my $c = Zonemaster::GUI::Dancer::Client->new({url => $url });
   
   my $result = $c->version_info({ });
   content_type 'application/json';
@@ -74,7 +74,7 @@ get '/version' => sub {
 };
 
 get '/check_syntax' => sub {
-  my $c = Client->new({url => $url });
+  my $c = Zonemaster::GUI::Dancer::Client->new({url => $url });
   
   my $data = from_json(encode_utf8(param('data'))); 
   my $result = $c->validate_syntax({ %$data });
@@ -83,7 +83,7 @@ get '/check_syntax' => sub {
 };
 
 get '/history' => sub {
-  my $c = Client->new({url => $url });
+  my $c = Zonemaster::GUI::Dancer::Client->new({url => $url });
   
   my $data = from_json(encode_utf8(param('data'))); 
   my $result = $c->get_test_history({ frontend_params => { %$data }, limit=>200, offset=>0 });
@@ -92,7 +92,7 @@ get '/history' => sub {
 };
 
 get '/resolve' => sub {
-  my $c = Client->new({url => $url });
+  my $c = Zonemaster::GUI::Dancer::Client->new({url => $url });
   
   my $data = param('data'); 
   my $result = $c->get_ns_ips( $data );
@@ -101,7 +101,7 @@ get '/resolve' => sub {
 };
 
 post '/run' => sub {
-  my $c = Client->new({url => $url });
+  my $c = Zonemaster::GUI::Dancer::Client->new({url => $url });
   
   my $data = from_json(encode_utf8(param('data'))); 
   my $job_id = $c->start_domain_test({ %$data });
@@ -110,7 +110,7 @@ post '/run' => sub {
 };
 
 get '/progress' => sub {
-  my $c = Client->new({url => $url });
+  my $c = Zonemaster::GUI::Dancer::Client->new({url => $url });
   
   my $progress = $c->test_progress(param('id'));
   content_type 'application/json';
@@ -118,7 +118,7 @@ get '/progress' => sub {
 };
 
 get '/result' => sub {
-  my $c = Client->new({url => $url });
+  my $c = Zonemaster::GUI::Dancer::Client->new({url => $url });
   
   my $result = $c->get_test_results({ params });
   content_type 'application/json';

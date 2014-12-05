@@ -1,4 +1,4 @@
-package Client;
+package Zonemaster::GUI::Dancer::Client;
 our $VERSION = '0.02';
 
 use strict;
@@ -45,7 +45,7 @@ sub AUTOLOAD {
 	my ($s, $usec) = gettimeofday();
 	my $id = $s*100000 + $usec;
 	
-	my ($method) = ($AUTOLOAD =~ /::(.+)$/);
+	my ($method) = ($AUTOLOAD =~ /::([^:]+)$/);
 	my $json = encode_json({"jsonrpc" => "2.0", "method" => $method, "params" => @_, "id" => $id});
 	
 	pretty_print_json("REQUEST", {"jsonrpc" => "2.0", "method" => $method, "params" => @_, "id" => $id});

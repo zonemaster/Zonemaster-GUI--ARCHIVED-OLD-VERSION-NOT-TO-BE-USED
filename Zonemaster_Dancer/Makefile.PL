@@ -6,7 +6,7 @@ WriteMakefile(
     NAME                => 'Zonemaster_Dancer',
     DISTVNAME		=> 'Zonemaster_Dancer',
     AUTHOR              => q{Michal TOMA <toma@nic.fr>},
-    VERSION_FROM        => 'lib/dnscheck.pm',
+    VERSION_FROM        => 'lib/Zonemaster/GUI/Dancer/Frontend.pm',
     ABSTRACT            => 'The Zonemaster project Web Frontend',
     ($ExtUtils::MakeMaker::VERSION >= 6.3002
       ? ('LICENSE'=> 'perl')

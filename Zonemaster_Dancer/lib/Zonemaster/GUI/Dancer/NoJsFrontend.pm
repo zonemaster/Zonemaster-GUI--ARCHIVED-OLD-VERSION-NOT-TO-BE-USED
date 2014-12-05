@@ -1,4 +1,4 @@
-package zonemaster_nojs;
+package Zonemaster::GUI::Dancer::NoJsFrontend;
 
 use strict;
 use warnings;
@@ -8,7 +8,7 @@ use Dancer ':syntax';
 use Plack::Builder;
 use Data::Dumper;
 use HTML::Entities;
-use Client;
+use Zonemaster::GUI::Dancer::Client;
 
 no warnings;
 our $VERSION = '0.1';
@@ -126,7 +126,7 @@ any ['get', 'post'] => '/nojs' => sub {
 		template 'nojs_main_view', params_backend2template($backend_params), { layout => undef };
 	}
 	elsif ($allparams{'button'} =~ /^NS IP\s+([\d]+)/) {
-		my $c = Client->new({url => $url });
+		my $c = Zonemaster::GUI::Dancer::Client->new({url => $url });
 		
 		my $backend_params = params_template2backend(\%allparams);
 		if (length($backend_params->{nameservers}->[$1-1]->{ns}) < 255) {
@@ -163,7 +163,7 @@ any ['get', 'post'] => '/nojs' => sub {
 		template 'nojs_main_view', params_backend2template($backend_params), { layout => undef };
 	}
 	elsif ($allparams{'button'} eq 'Fetch') {
-		my $c = Client->new({url => $url });
+		my $c = Zonemaster::GUI::Dancer::Client->new({url => $url });
 		
 		my $backend_params = params_template2backend(\%allparams);
 		if (length($backend_params->{domain}) < 255) {
@@ -180,7 +180,7 @@ any ['get', 'post'] => '/nojs' => sub {
 		}
 	}
 	elsif ($allparams{'button'} eq 'Run tests') {
-		my $c = Client->new({url => $url });
+		my $c = Zonemaster::GUI::Dancer::Client->new({url => $url });
 		my $backend_params = params_template2backend(\%allparams);
 		my $syntax = $c->validate_syntax($backend_params);
 		if ($syntax->{status} eq 'ok') {
@@ -198,7 +198,7 @@ any ['get', 'post'] => '/nojs' => sub {
 	}
 	elsif (request->method() eq 'GET') {
 		if (defined $allparams{'test_id'} ) {
-			my $c = Client->new({url => $url });
+			my $c = Zonemaster::GUI::Dancer::Client->new({url => $url });
 			my $backend_params = $c->get_test_params($allparams{'test_id'});
 			my $progress = $c->test_progress($allparams{'test_id'});
 			if ($progress < 100) {
