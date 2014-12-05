@@ -51,13 +51,11 @@ public/components/angular/angular-csp.css
 public/components/angular/angular.js
 public/components/angular/.bower.json
 public/components/angular/angular.min.js.gzip
-public/components/angular-translate-loader-static-files
 public/components/angular-translate-loader-static-files/README.md
 public/components/angular-translate-loader-static-files/bower.json
 public/components/angular-translate-loader-static-files/angular-translate-loader-static-files.js
 public/components/angular-translate-loader-static-files/.bower.json
 public/components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js
-public/components/angular-translate
 public/components/angular-translate/README.md
 public/components/angular-translate/bower.json
 public/components/angular-translate/angular-translate.min.js

@@ -5,9 +5,9 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     NAME                => 'Zonemaster_Dancer',
     DISTVNAME		=> 'Zonemaster_Dancer',
-    AUTHOR              => q{YOUR NAME <youremail@example.com>},
+    AUTHOR              => q{Michal TOMA <toma@nic.fr>},
     VERSION_FROM        => 'lib/dnscheck.pm',
-    ABSTRACT            => 'YOUR APPLICATION ABSTRACT',
+    ABSTRACT            => 'The Zonemaster project Web Frontend',
     ($ExtUtils::MakeMaker::VERSION >= 6.3002
       ? ('LICENSE'=> 'perl')
       : ()),
