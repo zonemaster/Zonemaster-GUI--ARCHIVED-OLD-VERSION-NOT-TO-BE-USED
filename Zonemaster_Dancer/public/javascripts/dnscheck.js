@@ -9,7 +9,6 @@ dnscheck.factory('customLoader', function ($http, $q, $timeout) {
     var data = {
     };
 	var lang = options.key;
-	if (lang == 'sv') lang = 'sw';
     $http.get('/lang/' + lang + '.json').success(function(interface_language_data){
 		angular.extend(data, interface_language_data);
 		$http.get('/faq?lang=' + lang ).success(function(faq){
