@@ -1,0 +1,29 @@
+Zonemaster
+==========
+
+Zonemaster is a cooperative project between .SE and AFNIC. It is a successor to both .SE's DNSCheck and AFNIC's Zonecheck.
+
+This module is the Web Interface part of the Zonemaster project. It is only usable with the zonemaster-backend module
+
+Installation
+============
+
+Follow the detailed installation instructions: Zonemaster_Dancer/Doc/zonemaster-frontend-installation-instructions.md
+
+Prerequisites
+=============
+
+The other modules needed to run the Zonemaster engine are listed in Makefile.PL as usual. 
+
+Documentation
+=============
+
+This module expects to reach the zonemaster-backend JSON-RPC webservice on localhost port 5000.
+
+License
+=======
+
+The software is released under the 2-clause BSD license. See separate LICENSE file.
+
+
+2014-12-05 Michal TOMA, for the Zonemaster development team
