@@ -23,9 +23,9 @@ views/ang/lang.tt
 views/ang/tab.tt
 views/ang/navigation.tt
 
-lib/dnscheck.pm
-lib/Client.pm
-lib/zonemaster_nojs.pm
+lib/Zonemaster/GUI/Dancer/Frontend.pm
+lib/Zonemaster/GUI/Dancer/Client.pm
+lib/Zonemaster/GUI/Dancer/NoJsFrontend.pm
 
 public/css/style.css
 public/css/error.css
