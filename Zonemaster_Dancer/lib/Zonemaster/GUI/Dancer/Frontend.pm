@@ -53,7 +53,7 @@ get '/test/:id' => sub {
   my $lang = request->{'accept_language'};
   $lang=~s/,.*$//;
   my $result = $c->get_test_results({ params, language=>$lang });
-  template 'index', { result => to_json($result), {allow_blessed => 1, convert_blessed => 1}};
+  template 'index', { result => to_json($result), test_id => param('id'), {allow_blessed => 1, convert_blessed => 1}};
 };
 
 get '/parent' => sub {

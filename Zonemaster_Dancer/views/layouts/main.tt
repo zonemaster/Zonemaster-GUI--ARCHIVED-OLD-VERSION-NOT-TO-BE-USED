@@ -37,7 +37,11 @@
 <script src="/javascripts/japp.js"></script>
 <!-- <script src="/javascripts/app.js"></script> -->
 <noscript>
+<% if test_id %>
+	<meta http-equiv="refresh" content="0;url=/nojs?test_id=<% test_id %>">
+<% else %>
 	<meta http-equiv="refresh" content="0;url=/nojs">
+<% end %>
 </noscript>
 </body>
 </html>
