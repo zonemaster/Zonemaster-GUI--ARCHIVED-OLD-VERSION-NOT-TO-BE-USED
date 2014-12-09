@@ -112,6 +112,7 @@ dnscheck.directive('domainCheck',function(){
         $scope.form = {};
         $scope.form.ipv4 = true;
         $scope.form.ipv6 = true;
+		$scope.form.profile = "default_profile";
         $scope.location = $window.location.href;
         if(typeof $rootScope.language === 'undefined') $rootScope.language = navigator.languages ? navigator.languages[0].substring(0, 2) : (navigator.language.substring(0, 2) || navigator.userLanguage.substring(0, 2));
 
