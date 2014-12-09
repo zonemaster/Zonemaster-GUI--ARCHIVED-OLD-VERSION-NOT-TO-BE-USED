@@ -16,6 +16,7 @@ our $VERSION = '0.1';
 my $url = 'http://localhost:5000';
 
 set template => 'template_toolkit';
+set server_tokens => 0;
 
 my $frontend_params = {
         client_id => 'Zonemaster NoJS', # free string

@@ -37,6 +37,8 @@ our $VERSION = '0.1';
 #my $url = 'http://zonemaster.rd.nic.fr:5000';
 my $url = 'http://localhost:5000';
 
+set server_tokens => 0;
+
 get '/' => sub {
   template 'index';
 };
