@@ -1,6 +1,9 @@
 'use strict';
 
-var dnscheck = angular.module('dnscheck',['ngResource','pascalprecht.translate']);
+var dnscheck = angular.module('dnscheck',['ngResource','pascalprecht.translate', 'ngRoute']);
+dnscheck.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+  $locationProvider.html5Mode(true);
+}]);
 
 dnscheck.factory('customLoader', function ($http, $q, $timeout) {
   // return loaderFn
@@ -336,6 +339,7 @@ dnscheck.directive('domainCheck',function(){
 					alert('Can\'t run test without at least one nameserver specified');
 					return;
 				}
+				$location.path('/');
 				$('.run-btn-icon').removeClass('fa-play-circle-o').addClass('loading');
 				$.ajax('/run',{
 					data : { data: JSON.stringify($scope.form) },
