@@ -11,7 +11,7 @@ use HTML::Entities;
 use Zonemaster::GUI::Dancer::Client;
 
 no warnings;
-our $VERSION = '0.1';
+our $VERSION = '1.0.0';
 #my $url = 'http://zonemaster.rd.nic.fr:5000';
 my $url = 'http://localhost:5000';
 
