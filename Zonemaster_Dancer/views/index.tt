@@ -16,7 +16,7 @@
       <tab tab-title="{{'FAQ'|translate}}" tab-id="faq"></tab>
     </navigation>
     <div class="pull-right">
-      <a class="nojs" href="/nojs">Non-Javascript Interface</a>
+      <a class="nojs" href="/nojs" target="_self">Non-Javascript Interface</a>
       &nbsp;
     </div>
   </div>
