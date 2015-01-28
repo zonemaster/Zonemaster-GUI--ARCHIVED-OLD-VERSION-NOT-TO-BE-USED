@@ -133,6 +133,8 @@ get '/faq' => sub {
 	my %allparams = params;
 	my $md = read_file("$PROD_DIR/zonemaster/docs/documentation/gui-faq-$allparams{lang}.md");
 	my $html = decode_utf8(markdown($md));
+	$html =~ s/<a/<a style="color: white;"/isg;
+	$html =~ s/<h4/<br><h4/isg;
 	return to_json ({ FAQ_CONTENT => $html }, {allow_blessed => 1, convert_blessed => 1});
 };
 
