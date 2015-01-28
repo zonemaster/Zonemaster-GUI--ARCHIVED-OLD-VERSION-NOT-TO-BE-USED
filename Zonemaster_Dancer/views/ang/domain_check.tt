@@ -4,7 +4,7 @@
     <input type="text" class="form-control" id="domain_check_name" ng-model="$parent.form.domain" ng-keypress="($event.which === 13)?domainCheck():0" >
     <br>
     <div class="progress" ng-show="progress>=0 && progress<100">
-      <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
+      <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" ng-style="progressStyle">
           {{progress}}%
       </div>
     </div>

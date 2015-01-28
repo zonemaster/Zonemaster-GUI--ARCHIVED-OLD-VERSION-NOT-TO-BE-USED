@@ -60,7 +60,7 @@ get '/parent' => sub {
   my $c = Zonemaster::GUI::Dancer::Client->new({url => $url });
   
   my $result = $c->get_data_from_parent_zone_1( param('domain') );
-  debug Dumper($result);
+#  debug Dumper($result);
   content_type 'application/json';
   return to_json ({ result => $result }, {allow_blessed => 1, convert_blessed => 1});
 };
@@ -80,6 +80,7 @@ get '/check_syntax' => sub {
   
   my $data = from_json(encode_utf8(param('data'))); 
   my $result = $c->validate_syntax({ %$data });
+#  debug Dumper($result);
   content_type 'application/json';
   return to_json ({ result => $result }, {allow_blessed => 1, convert_blessed => 1});
 };
@@ -115,6 +116,7 @@ get '/progress' => sub {
   my $c = Zonemaster::GUI::Dancer::Client->new({url => $url });
   
   my $progress = $c->test_progress(param('id'));
+  header('Cache-Control' =>  'no-store, no-cache, must-revalidate');
   content_type 'application/json';
   return to_json ({ progress => $progress }, {allow_blessed => 1, convert_blessed => 1});
 };

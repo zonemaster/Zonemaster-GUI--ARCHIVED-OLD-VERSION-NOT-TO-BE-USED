@@ -297,6 +297,7 @@ dnscheck.directive('domainCheck',function(){
             dataType : 'json',
             success: function(data){
               $scope.$apply($scope.progress = data.progress.toString());
+	      $scope.$apply($scope.progressStyle = {"width" : data.progress.toString()+"%"});
               if(data.progress === 100){ $scope.showResult(); }
               else {
                 setTimeout($scope.progressCheck, $scope.interval);
