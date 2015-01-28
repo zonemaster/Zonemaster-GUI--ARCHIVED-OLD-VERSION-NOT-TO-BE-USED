@@ -29,7 +29,7 @@
     <div class="result" ng-show="result">
       <div>
       <h2> {{'Test #'|translate}} {{ test.id }}</h2>
-      <i>{{'Executed at'|translate}} {{ test.creation_time | asDate | date:"dd.MM.yyyy HH:mm" }}</i>
+      <i>{{'Executed at'|translate}} {{ test.creation_time | asDate | date:"yyyy-MM-ddTHH:mmZ" }}</i>
       <br>
       {{'Link'|translate}}
       <input type="text" class="form-control disabled" value="<%request.uri_base%>/test/{{test.id}}">
@@ -65,7 +65,7 @@
         <tab tab-title="{{'History'|translate}}" tab-id="history">
         <br>
           <div class="" ng-repeat="item in history">
-            <span class="history-{{item.overall_result}}">&#x25C9;</span>&nbsp;<a href="/test/{{item.id}}">{{item.creation_time | asDate | date:"dd.MM.yyyy HH:mm"}}</a>
+            <span class="history-{{item.overall_result}}">&#x25C9;</span>&nbsp;<a href="/test/{{item.id}}">{{item.creation_time | asDate | date:"yyyy-MM-ddTHH:mmZ"}}</a>
           </div>
         </tab>
       </navigation>
