@@ -31,7 +31,8 @@
       </div>
     </div>
     <br>
-    <legend> {{'Digests'|translate}} <button class="pull-right btn btn-link btn-sm" ng-click="addDigest()"><span class="fa fa-plus"></span></button></legend>
+<!--    <legend> {{'Digests'|translate}} <button class="pull-right btn btn-link btn-sm" ng-click="addDigest()"><span class="fa fa-plus"></span></button></legend> -->
+	<legend> {{'Digests'|translate}} <button class="pull-right btn btn-link btn-sm"><span class="fa fa-plus"></span></button></legend>
     <div ng-repeat="(idx,ds) in ds_list" class="row">
       <div class="col-xs-6">
         <select ng-model="ds.algorithm" class="form-control">
