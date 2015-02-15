@@ -54,7 +54,7 @@ or in perlbrew enviromnemnts
 
 **Install package dependencies**
 
-    $ sudo apt-get install starman libtemplate-perl libplack-perl libtext-markdown-perl libfile-slurp-perl ibhtml-parser-perl libjson-perl libyaml-perl libdancer-perl
+    $ sudo apt-get install starman libtemplate-perl libplack-perl libtext-markdown-perl libfile-slurp-perl libhtml-parser-perl libjson-perl libyaml-perl libdancer-perl
 
 **Create a .tgz package of the software**
 
