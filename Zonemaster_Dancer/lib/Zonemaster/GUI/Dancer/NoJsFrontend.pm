@@ -168,7 +168,7 @@ any ['get', 'post'] => '/nojs' => sub {
 		
 		my $backend_params = params_template2backend(\%allparams);
 		if (length($backend_params->{domain}) < 255) {
-			my $parent_zone_data = $c->get_data_from_parent_zone_1($backend_params->{domain});
+			my $parent_zone_data = $c->get_data_from_parent_zone($backend_params->{domain});
 			say Dumper($parent_zone_data);
 			say Dumper($backend_params);
 			$backend_params->{nameservers} = $parent_zone_data->{ns_list} if ($parent_zone_data->{ns_list});
