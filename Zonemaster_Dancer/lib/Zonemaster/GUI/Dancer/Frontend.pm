@@ -59,7 +59,7 @@ get '/test/:id' => sub {
 get '/parent' => sub {
   my $c = Zonemaster::GUI::Dancer::Client->new({url => $url });
   
-  my $result = $c->get_data_from_parent_zone_1( param('domain') );
+  my $result = $c->get_data_from_parent_zone( param('domain') );
 #  debug Dumper($result);
   content_type 'application/json';
   return to_json ({ result => $result }, {allow_blessed => 1, convert_blessed => 1});
