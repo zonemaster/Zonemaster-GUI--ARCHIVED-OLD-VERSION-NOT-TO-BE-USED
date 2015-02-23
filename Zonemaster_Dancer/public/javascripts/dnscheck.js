@@ -26,7 +26,15 @@ dnscheck.factory('customLoader', function ($http, $q, $timeout) {
 
 dnscheck.config(function($translateProvider) {
 	$translateProvider.useLoader('customLoader');
-	$translateProvider.preferredLanguage(navigator.languages ? navigator.languages[0].substring(0, 2) : (navigator.language.substring(0, 2) || navigator.userLanguage.substring(0, 2)));
+	var lang;
+		if (navigator.userLanguage) // Explorer
+			lang = navigator.userLanguage;
+		else if (navigator.language) // FF
+			lang = navigator.languages ? navigator.languages[0].substring(0, 2) : (navigator.language.substring(0, 2) || navigator.userLanguage.substring(0, 2));
+		else
+			lang = "en";
+		
+	$translateProvider.preferredLanguage(lang);
 });
 
 dnscheck.filter("asDate", function () {
@@ -117,7 +125,14 @@ dnscheck.directive('domainCheck',function(){
         $scope.form.ipv6 = true;
 		$scope.form.profile = "default_profile";
         $scope.location = $window.location.href;
-        if(typeof $rootScope.language === 'undefined') $rootScope.language = navigator.languages ? navigator.languages[0].substring(0, 2) : (navigator.language.substring(0, 2) || navigator.userLanguage.substring(0, 2));
+        var lang;
+            if (navigator.userLanguage) // Explorer
+                lang = navigator.userLanguage;
+            else if (navigator.language) // FF
+                lang = navigator.languages ? navigator.languages[0].substring(0, 2) : (navigator.language.substring(0, 2) || navigator.userLanguage.substring(0, 2));
+            else
+               lang = "en";
+        if(typeof $rootScope.language === 'undefined') $rootScope.language = lang;
 
         if($scope.inactive) {
           $scope.contentUrl = '/ang/inactive_domain_check'
