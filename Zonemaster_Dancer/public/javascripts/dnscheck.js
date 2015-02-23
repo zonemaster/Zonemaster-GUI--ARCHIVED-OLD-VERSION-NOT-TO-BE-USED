@@ -28,7 +28,7 @@ dnscheck.config(function($translateProvider) {
 	$translateProvider.useLoader('customLoader');
 	var lang;
 		if (navigator.userLanguage) // Explorer
-			lang = navigator.userLanguage;
+			lang = navigator.userLanguage.substring(0, 2);
 		else if (navigator.language) // FF
 			lang = navigator.languages ? navigator.languages[0].substring(0, 2) : (navigator.language.substring(0, 2) || navigator.userLanguage.substring(0, 2));
 		else
@@ -127,7 +127,7 @@ dnscheck.directive('domainCheck',function(){
         $scope.location = $window.location.href;
         var lang;
             if (navigator.userLanguage) // Explorer
-                lang = navigator.userLanguage;
+                lang = navigator.userLanguage.substring(0, 2);
             else if (navigator.language) // FF
                 lang = navigator.languages ? navigator.languages[0].substring(0, 2) : (navigator.language.substring(0, 2) || navigator.userLanguage.substring(0, 2));
             else
