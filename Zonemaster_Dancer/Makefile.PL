@@ -2,6 +2,10 @@ use strict;
 use warnings;
 use ExtUtils::MakeMaker;
 
+sub MY::install {
+    "install ::\n\t\$(info This makefile only supports the 'make dist', target)"
+}
+
 WriteMakefile(
     NAME                => 'Zonemaster_Dancer',
     DISTVNAME		=> 'Zonemaster_Dancer',
