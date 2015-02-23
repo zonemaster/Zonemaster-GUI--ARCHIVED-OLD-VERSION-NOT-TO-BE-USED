@@ -107,6 +107,8 @@ post '/run' => sub {
   my $c = Zonemaster::GUI::Dancer::Client->new({url => $url });
   
   my $data = from_json(encode_utf8(param('data'))); 
+  $data->{client_id} = 'Zonemaster Dancer Frontend';
+  $data->{client_version} = $VERSION;
   my $job_id = $c->start_domain_test({ %$data });
   content_type 'application/json';
   return to_json ({ job_id => $job_id }, {allow_blessed => 1, convert_blessed => 1});

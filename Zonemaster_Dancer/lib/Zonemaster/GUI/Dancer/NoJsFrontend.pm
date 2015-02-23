@@ -87,6 +87,9 @@ sub params_template2backend {
 	$backend_params{ipv6} = $params->{ipv6} if ($params->{ipv6});
 	$backend_params{profile} = $params->{profile} if ($params->{profile});
 	
+	$backend_params{client_id} = 'Zonemaster NoJS Frontend';
+	$backend_params{client_version} = $VERSION;
+
 	my $ns_id = 1;
 	while (defined $params->{"ns$ns_id"}) {
 		push(@{$backend_params{nameservers}}, { ns => $params->{"ns$ns_id"} , ip => $params->{"ip$ns_id"} });
