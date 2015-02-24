@@ -33,7 +33,7 @@ unshift(@INC, $PROJECT_BASE_DIR);
 ##################################################################
 
 no warnings;
-our $VERSION = '1.0.0';
+our $VERSION = '1.0.1';
 #my $url = 'http://zonemaster.rd.nic.fr:5000';
 my $url = 'http://localhost:5000';
 
