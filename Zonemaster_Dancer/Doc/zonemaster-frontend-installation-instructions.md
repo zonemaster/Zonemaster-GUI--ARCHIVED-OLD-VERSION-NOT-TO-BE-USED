@@ -23,7 +23,7 @@ Whatever is needed on your distribution
     
 **Create a .tgz package of the software**
 
-    $ cd zonemaster-gui
+    $ cd zonemaster-gui/Zonemaster_Dancer/
     $ perl Makefile.PL
     $ make test
     $ make dist
@@ -32,7 +32,7 @@ Whatever is needed on your distribution
 
 **start the frontend using a perl application server (tested with starman)**
 
-    $ cd zonemaster-gui/Zonemaster_Dancer
+    $ cd zonemaster-gui/Zonemaster_Dancer/
     $ sudo starman --port=80 bin/app.pl
 or in perlbrew enviromnemnts
     $ sudo /home/user/perl5/perlbrew/perls/perl-5.20.0/bin/perl /home/user/perl5/perlbrew/perls/perl-5.20.0/bin/starman --error-log=/var/log/zonemaster/frontend_starman.log --port=80 bin/app.pl
@@ -50,14 +50,14 @@ or in perlbrew enviromnemnts
 
 **Create a .tgz package of the software**
 
-    $ cd zonemaster-gui
+    $ cd zonemaster-gui/Zonemaster_Dancer/
     $ perl Makefile.PL
     $ make test
     $ make dist
 
 **start the frontend using a perl application server (tested with starman)**
 
-    $ cd zonemaster-gui/Zonemaster_Dancer
+    $ cd zonemaster-gui/Zonemaster_Dancer/
     $ sudo starman --port=80 bin/app.pl
 or in perlbrew enviromnemnts
     $ sudo /home/user/perl5/perlbrew/perls/perl-5.20.0/bin/perl /home/user/perl5/perlbrew/perls/perl-5.20.0/bin/starman --error-log=/var/log/zonemaster/frontend_starman.log --port=80 bin/app.pl
