@@ -141,5 +141,6 @@
 				<% END %>
 			<% END %>
 		</p>
+		 <a href="<% request.uri_base %>/test/<% test_id %>">Javascript Interface</a>
 	</body>
 </html>
