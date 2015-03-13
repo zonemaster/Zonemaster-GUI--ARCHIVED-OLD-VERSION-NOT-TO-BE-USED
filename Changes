@@ -1,0 +1,43 @@
+Revision history for Perl module Zonemaster.
+
+v1.0.1 2015-02-24
+	Fixes #78 - Version change from 1.0.0 to 1.0.1 for release 2015.1
+	Fixes #75 - Disable the "make install" target in makefiles
+	Fixes #73 - Add the front-end identification to the parameters
+	Fixes #49 - Interface does not work in IE9
+	Fixes #66 - zonemaster-gui issue #17 impacts in the frontend
+	Fixes #38 - Spelling correction in Swedish
+	Fixes #60 - Change logo
+	Fixes #58 - Disable DS records on the interface until the DS hash algorithm field is added in the gui.
+	Fixes #34 - Readability of the FAQ
+	Fixes #35 - Link to /nojs doesn't work when javascript is enabled
+	Fixes #36 - Print dates in ISO 8601-format
+	Fixes #49 - IE incompatibility problem
+
+v1.0.0 2014-12-30
+
+v1.0.0 2014-12-11 Public beta release.
+	Fixes #17  - URL field does not get updated
+	Fixes #22  - Disable test profile selection dropdown list
+	Fixes #10  - Cannot view test result without javascript 
+	Fixes #8   - HTTP header security recommendation
+	Fixes #7   - Swedish language code is sv, not sw
+	Fixes #9   - Not a number-error instead of date of the test in the rest results dialog
+	Fixes #11  - Module name(s) in Zonemaster_Dancer are dangerous
+	Fixes #225 - Missing install instructions for Web UI
+	Fixes #173 - Write up procedures on how to translate Zonemaster
+	Fixes #123 - The un delegated view should have a text describing what un delegated means
+	Fixes #94  - Seperate history delegated vs undelegated
+	Fixes #119 - Design issue: very small column with results
+	Fixes #236 - Automatic language switch in GUI
+	Fixes #203 - Interfaces does not take into account the winter timings
+	Fixes #184 - New logo fro the Web GUI
+	Fixes #190 - Debug text in output from results?
+	Fixes #124 - FAQ to be added
+	Fixes #163 - Link to non java script
+	Fixes #125 - Does not display correct IPv6 address
+	Fixes #121 - fixes #122 - fr and sw translations of the GUI
+	Fixes #126 - Does not support Swedish language
+	Fixes #127 - Does not support IDN 2.0 domains
+	Fixes #118 - Run test when pressing Enter
+	Fixes #117 - Disable both IPv4 and IPv6
