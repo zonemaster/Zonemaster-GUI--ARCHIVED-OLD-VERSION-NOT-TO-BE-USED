@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="<% request.uri_base %>/css/nojs_style.css" />
 		<% IF test_running %>
 			<meta http-equiv="refresh" content="5;url=/nojs?test_id=<% test_id %>">
