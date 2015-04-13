@@ -7,7 +7,7 @@
 
 The file is located in the following folder:
 ```
-ZONEMASTER_DISTRIBUTION/zonemaster-gui/Zonemaster_Dancer/public/lang
+ZONEMASTER_DISTRIBUTION/zonemaster-gui//public/lang
 ```
 This folder contains the language files.
 
@@ -25,7 +25,7 @@ Where LANGUAGE_CODE is the standard 2 letter language code from: [official langu
 3. Ading the language link to the web interface
 The file that needs to be modified is locaded inb the following folder:
 ```
-ZONEMASTER_DISTRIBUTION/zonemaster-gui/Zonemaster_Dancer/views
+ZONEMASTER_DISTRIBUTION/zonemaster-gui//views
 ```
 and is called index.tt
 
