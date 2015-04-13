@@ -11,7 +11,7 @@ use Zonemaster::GUI::Dancer::Client;
 
 use FindBin qw($RealScript $Script $RealBin $Bin);
 ##################################################################
-my $PROJECT_NAME = "zonemaster-gui/Zonemaster_Dancer";
+my $PROJECT_NAME = "zonemaster-gui";
 
 my $SCRITP_DIR = __FILE__;
 $SCRITP_DIR = $Bin unless ($SCRITP_DIR =~ /^\//);
