@@ -24,7 +24,6 @@ WriteMakefile(
         'Plack::Builder' => 0,
         'Text::Markdown' => 0,
         'File::Slurp' => 0,
-        'FindBin' => 0,
         'HTML::Entities' => 0,
         'Plack::App::File' => 0,
         'JSON' => 0,

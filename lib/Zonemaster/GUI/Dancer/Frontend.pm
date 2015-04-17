@@ -9,30 +9,6 @@ use File::Slurp;
 
 use Zonemaster::GUI::Dancer::Client;
 
-use FindBin qw($RealScript $Script $RealBin $Bin);
-##################################################################
-my $PROJECT_NAME = "zonemaster-gui";
-
-my $SCRITP_DIR = __FILE__;
-$SCRITP_DIR = $Bin unless ($SCRITP_DIR =~ /^\//);
-
-#warn "SCRITP_DIR:$SCRITP_DIR\n";
-#warn "RealScript:$RealScript\n";
-#warn "Script:$Script\n";
-#warn "RealBin:$RealBin\n";
-#warn "Bin:$Bin\n";
-#warn "__PACKAGE__:".__PACKAGE__;
-#warn "__FILE__:".__FILE__;
-
-my ($PROD_DIR) = ($SCRITP_DIR =~ /(.*?\/)$PROJECT_NAME/);
-#warn "PROD_DIR:$PROD_DIR\n";
-
-my $PROJECT_BASE_DIR = $PROD_DIR.$PROJECT_NAME."/";
-#warn "PROJECT_BASE_DIR:$PROJECT_BASE_DIR\n";
-unshift(@INC, $PROJECT_BASE_DIR);
-##################################################################
-
-no warnings;
 our $VERSION = '1.0.1';
 #my $url = 'http://zonemaster.rd.nic.fr:5000';
 my $url = 'http://localhost:5000';
