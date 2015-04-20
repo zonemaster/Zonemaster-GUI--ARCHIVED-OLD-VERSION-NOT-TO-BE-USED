@@ -25,7 +25,6 @@ WriteMakefile(
         'Text::Markdown' => 0,
         'File::Slurp' => 0,
         'HTML::Entities' => 0,
-        'Plack::App::File' => 0,
         'JSON' => 0,
         'Test::More' => 0,
         'YAML'       => 0,
