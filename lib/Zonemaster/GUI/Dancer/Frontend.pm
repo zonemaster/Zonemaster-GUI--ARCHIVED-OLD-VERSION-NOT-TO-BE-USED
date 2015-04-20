@@ -29,8 +29,6 @@ for my $lang (qw[sv en fr]) {
     }
 }
 
-set server_tokens => 0;
-
 get '/' => sub {
   template 'index';
 };

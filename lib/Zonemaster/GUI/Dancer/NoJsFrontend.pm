@@ -15,9 +15,6 @@ our $VERSION = '1.0.1';
 #my $url = 'http://zonemaster.rd.nic.fr:5000';
 my $url = 'http://localhost:5000';
 
-set template => 'template_toolkit';
-set server_tokens => 0;
-
 my $frontend_params = {
         client_id => 'Zonemaster NoJS', # free string
         client_version => '1.0',                       # free version like string
