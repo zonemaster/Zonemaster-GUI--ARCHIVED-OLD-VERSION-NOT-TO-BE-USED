@@ -6,33 +6,12 @@ use 5.10.1;
 
 use Dancer ':syntax';
 use Plack::Builder;
-use Data::Dumper;
 use HTML::Entities;
 use Zonemaster::GUI::Dancer::Client;
 
-no warnings;
 our $VERSION = '1.0.1';
-#my $url = 'http://zonemaster.rd.nic.fr:5000';
-my $url = 'http://localhost:5000';
 
-my $frontend_params = {
-        client_id => 'Zonemaster NoJS', # free string
-        client_version => '1.0',                       # free version like string
-        
-        domain => 'afnic.fr',                         # content of the domain text field
-        advanced_options => 1,                          # 0 or 1, is the advanced options checkbox checked
-        ipv4 => 1,                                                      # 0 or 1, is the ipv4 checkbox checked
-        ipv6 => 1,                                                      # 0 or 1, is the ipv6 checkbox checked
-        profile => 'test_profile_1',       # the id if the Test profile listbox
-        nameservers => [                                        # list of the namaserves up to 32
-                { ns => 'ns1.nic.fr', ip => '1.2.3.4'},                   # key values pairs representing nameserver => namesterver_ip
-                { ns => 'ns2.nic.fr', ip => '192.134.4.1'},
-        ],
-        ds_digest_pairs => [                            # list of DS/Digest pairs up to 32
-                { algorithm => 'ds1', digest => 'ds-test1'},                   
-                { algorithm => 'ds2', digest => 'ds-test2'},                   
-        ],
-};
+my $url = 'http://localhost:5000';
 
 sub params_backend2template {
 	my ($params) = @_;
@@ -69,9 +48,6 @@ sub params_backend2template {
 	}
 	$template_params{ds_digest_pairs} = \@ds_digest_pairs if (@ds_digest_pairs);
 
-#	$template_params{debug_mode} = 1;
-	$template_params{text1} = 'params_backend2template:'.Dumper(\%template_params);
-
 	return \%template_params;
 }
 
@@ -105,24 +81,13 @@ sub params_template2backend {
 any ['get', 'post'] => '/nojs' => sub {
 	header('Cache-Control' =>  'no-store, no-cache, must-revalidate');
 	my %allparams = params;
-	if ($allparams{'button'} eq 'Load from Backend') {
-		template 'nojs_main_view', params_backend2template($frontend_params), { layout => undef };
-	}
-	elsif ($allparams{'button'} eq 'Send to Backend') {
-		say Dumper(\%allparams);
+	if ($allparams{'button'} eq 'Add NS') {
 		my $backend_params = params_template2backend(\%allparams);
-		say Dumper($backend_params);
-		template 'nojs_main_view', params_backend2template($backend_params), { layout => undef };
-	}
-	elsif ($allparams{'button'} eq 'Add NS') {
-		my $backend_params = params_template2backend(\%allparams);
-		say Dumper($backend_params);
 		push(@{$backend_params->{nameservers}}, { ns_id => scalar(@{$backend_params->{nameservers}})+1, ns => '', ip => '' });
 		template 'nojs_main_view', params_backend2template($backend_params), { layout => undef };
 	}
 	elsif ($allparams{'button'} =~ /^Delete NS\s+([\d]+)/) {
 		my $backend_params = params_template2backend(\%allparams);
-		say Dumper($backend_params);
 		splice(@{$backend_params->{nameservers}}, $1-1, 1);    
 		template 'nojs_main_view', params_backend2template($backend_params), { layout => undef };
 	}
@@ -153,13 +118,11 @@ any ['get', 'post'] => '/nojs' => sub {
 	}
 	elsif ($allparams{'button'} eq 'Add DS') {
 		my $backend_params = params_template2backend(\%allparams);
-		say Dumper($backend_params);
 		push(@{$backend_params->{ds_digest_pairs}}, { ds_id => scalar(@{$backend_params->{ds_digest_pairs}})+1, algorithm => '', digest => '' });
 		template 'nojs_main_view', params_backend2template($backend_params), { layout => undef };
 	}
 	elsif ($allparams{'button'} =~ /^Delete DS\s+([\d]+)/) {
 		my $backend_params = params_template2backend(\%allparams);
-		say Dumper($backend_params);
 		splice(@{$backend_params->{ds_digest_pairs}}, $1-1, 1);    
 		template 'nojs_main_view', params_backend2template($backend_params), { layout => undef };
 	}
@@ -169,11 +132,8 @@ any ['get', 'post'] => '/nojs' => sub {
 		my $backend_params = params_template2backend(\%allparams);
 		if (length($backend_params->{domain}) < 255) {
 			my $parent_zone_data = $c->get_data_from_parent_zone($backend_params->{domain});
-			say Dumper($parent_zone_data);
-			say Dumper($backend_params);
 			$backend_params->{nameservers} = $parent_zone_data->{ns_list} if ($parent_zone_data->{ns_list});
 			$backend_params->{ds_digest_pairs} = $parent_zone_data->{ds_list} if ($parent_zone_data->{ds_list});
-			say Dumper($backend_params);
 			template 'nojs_main_view', params_backend2template($backend_params), { layout => undef };
 		}
 		else {
@@ -186,7 +146,6 @@ any ['get', 'post'] => '/nojs' => sub {
 		my $syntax = $c->validate_syntax($backend_params);
 		if ($syntax->{status} eq 'ok') {
 			my $test_id = $c->start_domain_test($backend_params);
-			say Dumper($test_id);
 			my $template_params = params_backend2template($backend_params);
 			$template_params->{test_running} = 1;
 			$template_params->{test_id} = $test_id;
@@ -210,7 +169,6 @@ any ['get', 'post'] => '/nojs' => sub {
 				template 'nojs_main_view', $template_params, { layout => undef };
 			}
 			else {
-				say "get_test_results: ".Dumper($c->get_test_results( { id => $allparams{'test_id'}, language => 'en' } ));
 				my $test_result = $c->get_test_results( { id => $allparams{'test_id'}, language => 'en' } );
 				my $backend_params = $test_result->{params};
 				my $previous_module = '';
