@@ -2,17 +2,9 @@
 # env-related settings should go to environments/$env.yml
 # all the settings in this file will be loaded at Dancer's startup.
 
-# Your application's name
 appname: "zonemaster"
-
-# The default layout to use for your application (located in
-# views/layouts/main.tt)
 layout: "main"
-
-# when the charset is set to UTF-8 Dancer will handle for you
-# all the magic of encoding and decoding. You should not care
-# about unicode within your app when this setting is set (recommended).
 charset: "UTF-8"
-
 template: "template_toolkit"
 server_tokens: 0
+require_environment: 1
