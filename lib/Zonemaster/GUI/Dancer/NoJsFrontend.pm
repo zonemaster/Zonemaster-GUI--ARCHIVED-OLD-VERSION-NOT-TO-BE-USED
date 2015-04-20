@@ -92,6 +92,7 @@ sub params_template2backend {
 any [ 'get', 'post' ] => '/nojs' => sub {
     header( 'Cache-Control' => 'no-store, no-cache, must-revalidate' );
     my %allparams = params;
+    no warnings 'uninitialized';
 
     if ( $allparams{'button'} eq 'Add NS' ) {
         my $backend_params = params_template2backend( \%allparams );
