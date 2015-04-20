@@ -3,15 +3,31 @@ package Zonemaster::GUI::Dancer::Frontend;
 use Dancer ':syntax';
 use Plack::Builder;
 use Data::Dumper;
-use Encode;
+use Encode qw[decode_utf8];
 use Text::Markdown 'markdown';
 use File::Slurp;
+use HTTP::Tiny;
 
 use Zonemaster::GUI::Dancer::Client;
 
 our $VERSION = '1.0.1';
 #my $url = 'http://zonemaster.rd.nic.fr:5000';
 my $url = 'http://localhost:5000';
+
+my $faq_url_base = 'https://raw.githubusercontent.com/dotse/zonemaster/master/docs/documentation/gui-faq-%s.md';
+my %faqs;
+my $http = HTTP::Tiny->new;
+for my $lang (qw[sv en fr]) {
+    my $r = $http->get(sprintf($faq_url_base, $lang));
+    if ($r->{success} and $r->{headers}{'content-type'} eq 'text/plain; charset=utf-8') {
+        $faqs{$lang} = decode_utf8($r->{content});
+    }
+    elsif ($r->{success}) {
+        $faqs{$lang} = 'Unexpected content-type for FAQ: ' . $r->{headers}{'content-type'};
+    } else {
+        $faqs{$lang} = 'FAQ content missing.';
+    }
+}
 
 set server_tokens => 0;
 
@@ -109,8 +125,8 @@ get '/result' => sub {
 
 get '/faq' => sub {
 	my %allparams = params;
-	my $md = read_file("$PROD_DIR/zonemaster/docs/documentation/gui-faq-$allparams{lang}.md");
-	my $html = decode_utf8(markdown($md));
+	my $md = $faqs{ $allparams{lang} };
+	my $html = markdown($md);
 	$html =~ s/<a/<a style="color: white;"/isg;
 	$html =~ s/<h4/<br><h4/isg;
 	return to_json ({ FAQ_CONTENT => $html }, {allow_blessed => 1, convert_blessed => 1});
