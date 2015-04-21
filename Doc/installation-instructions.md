@@ -16,5 +16,36 @@ So, in essence, the installation consists of the following steps:
 
 5) Start the server. How to do this can also vary a lot, depending on what else is running on the same server, how much traffic you're expecting to get and such. In any case, you need a server that understands the `PSGI` interface, and it should be pointed at the file `zm_app/bin/app.pl` in the subdirectory you just copied things to (leaving it in the source code also works, of course).
 
-## Example installation for Unbuntu Server 14.04LTS
+## Example installation for Ubuntu Server 14.04LTS
 
+1) Install the backend according to its instructions.
+
+2) Install added prerequisite packages:
+
+    sudo apt-get install libdancer-perl libtext-markdown-perl
+
+3) Get the source code.
+
+    git clone https://github.com/dotse/zonemaster-gui.git
+
+4) Change to the source code directory.
+
+    cd zonemaster-gui
+
+5) Install the Perl modules.
+
+    perl Makefile.PL
+    make
+    make test
+    make install
+
+6) Create a directory for the webapp parts, and copy them there.
+
+    sudo mkdir -p /usr/share/doc/zonemaster
+    sudo cp -a zm_app /usr/share/doc/zonemaster
+
+7) Start the server:
+
+    sudo starman --listen=:80 /usr/share/doc/zonemaster/zm_app/bin/app.pl
+
+The Doc directory in the source code also has an example Upstart file for the Web GUI starman server.
