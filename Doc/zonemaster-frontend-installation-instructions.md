@@ -19,7 +19,7 @@ Whatever is needed on your distribution
 
 **install the dependencies with perl CPAN**
 
-    $ (sudo if needed) cpan -i Starman Template LWP::UserAgent Time::HiRes Plack::Builder Text::Markdown File::Slurp FindBin HTML::Entities Plack::App::File JSON Test::More YAML Dancer
+    $ (sudo if needed) cpan -i Starman Template LWP::UserAgent Time::HiRes Plack::Builder Text::Markdown HTML::Entities Plack::App::File JSON Test::More YAML Dancer
     
 **Create a .tgz package of the software**
 
