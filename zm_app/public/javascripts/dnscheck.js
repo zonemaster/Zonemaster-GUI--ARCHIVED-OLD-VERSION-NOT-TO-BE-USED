@@ -81,12 +81,6 @@ dnscheck.directive('navigation',function(){
 	  
       this.addPane = function(pane) {
         var c = 0;
-        if(typeof t_res !== 'undefined' && typeof t_res.params.nameservers === 'undefined' && $scope.navId=='main'){
-          c = 0;
-        }
-        if(typeof t_res !== 'undefined' && typeof t_res.params.nameservers !== 'undefined' && $scope.navId=='main'){
-          c = 1;
-        }
         if (panes.length === c) {
           $scope.select(pane);
         }
@@ -258,8 +252,12 @@ dnscheck.directive('domainCheck',function(){
               $scope.$apply($scope.ds_list = data.result.params.ds_digest_pairs);
               if (data.result.params.nameservers) {
                   $scope.$apply($scope.contentUrl = '/ang/inactive_domain_check');
+                  $rootScope.panes[1].selected = true
+                  $rootScope.panes[0].selected = false
               } else {
                   $scope.$apply($scope.contentUrl = '/ang/domain_check');
+                  $rootScope.panes[0].selected = true
+                  $rootScope.panes[1].selected = false
               }
               $.ajax('/history',{
                 data : { data: JSON.stringify($scope.form) },
