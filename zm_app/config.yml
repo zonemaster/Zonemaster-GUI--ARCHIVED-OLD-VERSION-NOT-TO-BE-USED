@@ -3,7 +3,6 @@
 # all the settings in this file will be loaded at Dancer's startup.
 
 appname: "zonemaster"
-layout: "main"
 charset: "UTF-8"
 template: "template_toolkit"
 server_tokens: 0
