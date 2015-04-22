@@ -46,10 +46,6 @@ get '/' => sub {
     template 'index';
 };
 
-get '/ang/:file' => sub {
-    template 'ang/' . param( 'file' ), {}, { layout => undef };
-};
-
 get '/test/:id' => sub {
     my $lang = request->{'accept_language'};
     $lang =~ s/,.*$//;
