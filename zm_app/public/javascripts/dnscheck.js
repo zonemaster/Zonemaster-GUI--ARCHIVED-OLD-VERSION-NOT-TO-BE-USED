@@ -252,12 +252,16 @@ dnscheck.directive('domainCheck',function(){
               $scope.$apply($scope.ds_list = data.result.params.ds_digest_pairs);
               if (data.result.params.nameservers) {
                   $scope.$apply($scope.contentUrl = '/ang/inactive_domain_check');
-                  $rootScope.panes[1].selected = true
-                  $rootScope.panes[0].selected = false
+                  if ($rootScope.panes) {
+                      $rootScope.panes[1].selected = true
+                      $rootScope.panes[0].selected = false
+                  }
               } else {
                   $scope.$apply($scope.contentUrl = '/ang/domain_check');
-                  $rootScope.panes[0].selected = true
-                  $rootScope.panes[1].selected = false
+                  if ($rootScope.panes) {
+                      $rootScope.panes[0].selected = true
+                      $rootScope.panes[1].selected = false
+                  }
               }
               $.ajax('/history',{
                 data : { data: JSON.stringify($scope.form) },
