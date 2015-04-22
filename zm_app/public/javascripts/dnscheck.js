@@ -362,8 +362,10 @@ dnscheck.directive('domainCheck',function(){
 					type: 'post',
 					dataType : 'json',
 					success: function(data){
-						$scope.job_id = data.job_id;
-						$scope.progressCheck();
+                                            $scope.job_id = data.job_id;
+                                            $location.url('/test/' + data.job_id);
+                                            $scope.location = $location.absUrl();
+                                            $scope.progressCheck();
 					},
 					error: function(){
 						alert('Can\'t run test');
