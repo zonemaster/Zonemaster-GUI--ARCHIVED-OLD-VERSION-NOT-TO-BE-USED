@@ -142,41 +142,6 @@ dnscheck.directive('domainCheck',function(){
         }
         else $scope.contentUrl = '/ang/domain_check'
 
-        if(typeof t_res !== 'undefined' && typeof t_res.params.nameservers === 'undefined' && ! $scope.inactive){
-        // 
-          $scope.form = t_res.params;
-          $scope.result = t_res.results;
-          $scope.test = { id: t_res.id, creation_time: t_res.creation_time};
-          $.ajax('/history',{
-            data : { data: JSON.stringify($scope.form) },
-            dataType : 'json',
-            success: function(data){
-              $scope.$apply($scope.history = data.result);
-            },
-            error: function(){
-              alert('Can\'t get test history');
-            }
-          });
-        }
-        if(typeof t_res !== 'undefined' && typeof t_res.params.nameservers !== 'undefined' && $scope.inactive){
-        // 
-          $scope.form = t_res.params;
-          $scope.ns_list = t_res.params.nameservers;
-          $scope.ds_list = t_res.params.ds_digest_pairs;
-          $scope.result = t_res.results;
-          $scope.test = { id: t_res.id, creation_time: t_res.creation_time};
-          $.ajax('/history',{
-            data : { data: JSON.stringify($scope.form) },
-            dataType : 'json',
-            success: function(data){
-              $scope.$apply($scope.history = data.result);
-            },
-            error: function(){
-              alert('Can\'t get test history');
-            }
-          });
-        }
-
         $scope.fetchFromParent = function(){
           $.ajax('/parent',{
             data : $scope.form,
@@ -288,6 +253,24 @@ dnscheck.directive('domainCheck',function(){
               $scope.$apply($scope.test = { id: data.result.id, creation_time: data.result.creation_time});
               $scope.$apply($scope.result = data.result.results);
               $scope.$apply($scope.getModules(data.result.results));
+              $scope.$apply($scope.form = data.result.params);
+              $scope.$apply($scope.ns_list = data.result.params.nameservers);
+              $scope.$apply($scope.ds_list = data.result.params.ds_digest_pairs);
+              if (data.result.params.nameservers) {
+                  $scope.$apply($scope.contentUrl = '/ang/inactive_domain_check');
+              } else {
+                  $scope.$apply($scope.contentUrl = '/ang/domain_check');
+              }
+              $.ajax('/history',{
+                data : { data: JSON.stringify($scope.form) },
+                dataType : 'json',
+                success: function(data){
+                  $scope.$apply($scope.history = data.result);
+                },
+                error: function(){
+                  alert('Can\'t get test history');
+                }
+              });
             },
             error: function(){
               alert('Can\'t get test result');
@@ -373,6 +356,13 @@ dnscheck.directive('domainCheck',function(){
 				});
 			};
 		};
+
+        /* Disgusting hack, but better than passing data via Perl templates */
+        var ppa = $location.path().split("/");
+        if (ppa[1] == "test" && ppa[2] != undefined) {
+            $scope.job_id = ppa[2];
+            $scope.showResult();
+        }
     }],
     template: '<div ng-include="contentUrl"></div>'
   };

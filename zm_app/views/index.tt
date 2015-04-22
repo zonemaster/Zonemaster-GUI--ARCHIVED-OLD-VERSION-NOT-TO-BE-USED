@@ -1,6 +1,5 @@
-<html ng-app="z_dnscheck">
+<html>
 <head>
-    <meta http-equiv="Content-type" content="text/html; charset=<% settings.charset %>" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge;" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Zonemaster</title>
@@ -8,13 +7,9 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/style.css" />
-
-    <script>
-    <% if result %> var t_res = <% result %>; <% end %>
-    </script>
-
 </head>
-<body>
+
+<body ng-app="z_dnscheck">
     <div class="pagecontainer">
         <div class="wrapper">
             <div>
