@@ -37,7 +37,7 @@ So, in essence, the installation consists of the following steps:
     perl Makefile.PL
     make
     make test
-    make install
+    sudo make install
 
 6) Create a directory for the webapp parts, and copy them there.
 
@@ -49,3 +49,35 @@ So, in essence, the installation consists of the following steps:
     sudo starman --listen=:80 /usr/share/doc/zonemaster/zm_app/bin/app.pl
 
 The Doc directory in the source code also has an example Upstart file for the Web GUI starman server.
+
+## Example installation for FreeBSD 10
+
+1) Install the backend according to its instructions.
+
+2) Install additional prerequisite packages.
+
+    sudo pkg install p5-Dancer p5-Text-Markdown p5-Template-Toolkit
+
+3) Get the source code.
+
+    git clone https://github.com/dotse/zonemaster-gui.git
+
+4) Change to the source code directory.
+
+    cd zonemaster-gui
+
+5) Install the Perl modules.
+
+    perl Makefile.PL
+    make
+    make test
+    sudo make install
+
+6) Create a directory for the webapp parts, and copy them there.
+
+    sudo mkdir -p /usr/local/share/zonemaster
+    sudo cp -a zm_app /usr/local/share/zonemaster
+
+7) Start the server:
+
+    sudo starman --listen=:80 /usr/local/share/zonemaster/zm_app/bin/app.pl
