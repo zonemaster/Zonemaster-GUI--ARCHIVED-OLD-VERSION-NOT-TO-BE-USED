@@ -1,7 +1,7 @@
 'use strict';
 
-var dnscheck = angular.module('dnscheck',['ngResource','pascalprecht.translate', 'ngRoute']);
-dnscheck.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+var dnscheck = angular.module('dnscheck',['pascalprecht.translate']);
+dnscheck.config(['$locationProvider', function($locationProvider) {
   $locationProvider.html5Mode(true);
 }]);
 

@@ -61,8 +61,6 @@
         !window.jQuery && document.write('<script type="text/javascript" src="/javascripts/jquery.js"><\/script>')
         /* ]]> */</script>
     <script src="/components/angular/angular.min.js"></script>
-    <script src="/javascripts/angular-resource.min.js"></script>
-    <script src="/components/angular-route/angular-route.min.js"></script>
     <script src="/components/angular-translate/angular-translate.min.js"></script>
     <script src="/components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
     <script src="/javascripts/bootstrap.min.js"></script>
