@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/style.css" />
 </head>
 
-<body ng-app="z_dnscheck">
+<body ng-app="dnscheck">
     <div class="pagecontainer">
         <div class="wrapper">
             <div>
@@ -65,7 +65,6 @@
     <script src="/components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
     <script src="/javascripts/bootstrap.min.js"></script>
     <script src="/javascripts/dnscheck.js"></script>
-    <script src="/javascripts/z_dnscheck.js"></script>
     <script src="/javascripts/japp.js"></script>
     <noscript>
         <% if test_id %>
