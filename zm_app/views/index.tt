@@ -56,6 +56,9 @@
     </div>
     <div class="footer">
         <version></version>
+        <div class="pull-right">
+ 			<img src="/images/email.svg" alt="contact" width="24">&nbsp;<a class="nojs" href="mailto:contact@zonemaster.net">contact@zonemaster.net</a>&nbsp;&nbsp;<img src="/images/github.svg" alt="github" width="15">&nbsp;<a class="nojs" href="https://github.com/dotse/zonemaster">Github</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
     </div>
     <script type="text/javascript">/* <![CDATA[ */
         !window.jQuery && document.write('<script type="text/javascript" src="/javascripts/jquery.js"><\/script>')
