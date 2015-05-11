@@ -8,7 +8,7 @@ use Plack::Builder;
 use HTML::Entities;
 use Zonemaster::GUI::Dancer::Client;
 
-our $VERSION = '1.0.1';
+our $VERSION = '1.0.2';
 
 my $url = 'http://localhost:5000';
 

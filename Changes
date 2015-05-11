@@ -1,5 +1,21 @@
 Revision history for Perl module Zonemaster.
 
+v1.0.2 2015-05-11
+	Fixes #103 - Add contact e-mail to the interface
+	Fixes #102 - Cleanup of GUI code
+	Fixes #100 - Remove dancer subdir
+	Fixes #98 - added missing /
+	Fixes #97 - added bootstrap for mobiles at nojs
+	Fixes #96 - switch to JS interface extendet with test_id if present
+	Fixes #95 - make bootstrap working on mobiles
+	Fixes #94 - missing </script>
+	Fixes #91 - added URL to JS Interface
+	Fixes #90 - added http to link href
+	Fixes #88 - Updated installation instructions for the GUI
+	Fixes #87 - when testing gouv.fr in the "Undelegated domain check" tab the message the user receives when pressing the "Fetch data from parent zone" is wrong.
+	Fixes #82 - Remove the contents of Zonemaster-Dancer and movie it to the parent Zonemaster-GUI directory
+	Fixes #81 - Inconsistent answers for domains www.google.com and www.microsoft.com
+
 v1.0.1 2015-02-24
 	Fixes #78 - Version change from 1.0.0 to 1.0.1 for release 2015.1
 	Fixes #75 - Disable the "make install" target in makefiles
