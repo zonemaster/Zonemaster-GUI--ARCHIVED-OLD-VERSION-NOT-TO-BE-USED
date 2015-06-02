@@ -68,14 +68,14 @@ get '/version' => sub {
 };
 
 get '/check_syntax' => sub {
-    my $data = from_json( param( 'data' ) );
+    my $data = from_json( param( 'data' ), { utf8 => 0 } );
     my $result = $client->validate_syntax( {%$data} );
     content_type 'application/json';
     return to_json( { result => $result } );
 };
 
 get '/history' => sub {
-    my $data = from_json( param( 'data' ) );
+    my $data = from_json( param( 'data' ), { utf8 => 0 } );
     my $result = $client->get_test_history( { frontend_params => {%$data}, limit => 200, offset => 0 } );
     content_type 'application/json';
     return to_json( { result => $result } );
@@ -89,7 +89,7 @@ get '/resolve' => sub {
 };
 
 post '/run' => sub {
-    my $data = from_json( param( 'data' ) );
+    my $data = from_json( param( 'data' ), { utf8 => 0 } );
     $data->{client_id}      = 'Zonemaster Dancer Frontend';
     $data->{client_version} = __PACKAGE__->VERSION;
     my $job_id = $client->start_domain_test( {%$data} );
