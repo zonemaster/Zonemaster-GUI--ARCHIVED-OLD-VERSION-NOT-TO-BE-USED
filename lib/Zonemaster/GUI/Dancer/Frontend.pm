@@ -63,6 +63,13 @@ get '/version' => sub {
     my $result = $client->version_info( {} );
     content_type 'application/json';
     my $ip = request->address;
+    my $forwarded = request->header('X-FORWARDED-FOR');
+
+    if ($forwarded) {
+        my @parts = split(/,\s*/, $forwarded);
+        $ip = $parts[-1]; # Last part is the one that connected to our proxy.
+    }
+
     $ip =~ s/::ffff:// if ( $ip =~ /::ffff:/ );
     return to_json( { result => $result . ", IP address: $ip" } );
 };
