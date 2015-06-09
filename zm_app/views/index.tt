@@ -3,8 +3,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge;" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Zonemaster</title>
-    <link href='http://fonts.googleapis.com/css?family=Cuprum:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css' />
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Cuprum:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css' />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/style.css" />
 </head>
@@ -55,7 +55,7 @@
         </div>
     </div>
     <div class="footer">
-        <version></version>
+        <div version ng-style="{ 'color' : color }"></div>
         <div class="pull-right">
  			<img src="/images/email.svg" alt="contact" width="24">&nbsp;<a class="nojs" href="mailto:contact@zonemaster.net">contact@zonemaster.net</a>&nbsp;&nbsp;<img src="/images/github.svg" alt="github" width="15">&nbsp;<a class="nojs" href="https://github.com/dotse/zonemaster">Github</a>&nbsp;&nbsp;&nbsp;&nbsp;
         </div>
