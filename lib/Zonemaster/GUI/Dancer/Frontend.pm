@@ -39,7 +39,9 @@ for my $lang ( qw[sv en fr] ) {
 use Dancer ':syntax';
 use Zonemaster::GUI::Dancer::Client;
 
-my $url = 'http://localhost:5000';
+my $backend_port = 5000;
+$backend_port = $ENV{ZONEMASTER_BACKEND_PORT} if ($ENV{ZONEMASTER_BACKEND_PORT});
+my $url = "http://localhost:$backend_port";
 my $client = Zonemaster::GUI::Dancer::Client->new( { url => $url } );
 
 get '/' => sub {
@@ -59,12 +61,27 @@ get '/parent' => sub {
     return to_json( { result => $result } );
 };
 
-get '/version' => sub {
-    my $result = $client->version_info( {} );
-    content_type 'application/json';
+sub get_ip {
     my $ip = request->address;
+    $ip = request->header('X-Forwarded-For') if ($ip =~ /127\.0\.0\.1/ || $ip =~ /::1/);
     $ip =~ s/::ffff:// if ( $ip =~ /::ffff:/ );
-    return to_json( { result => $result . ", IP address: $ip" } );
+    
+    return $ip;
+}
+
+get '/version' => sub {
+    my $data = $client->version_info( {} );
+    my $ip = get_ip();
+    content_type 'application/json';
+    my $version;
+    if ($ENV{ZONEMASTER_ENVIRONMENT}) {
+		$version = $ENV{ZONEMASTER_ENVIRONMENT}." [Engine:".$data->{zonemaster_engine} . " / Frontend:$VERSION / Backend:".$data->{zonemaster_backend} . " / IP address: $ip]";
+	}
+	else {
+		$version = "Zonemaster Test Engine Verison:".$data->{zonemaster_engine} . ", IP address: $ip";
+	}
+	
+    return to_json( { result => $version } );
 };
 
 get '/check_syntax' => sub {
@@ -92,6 +109,9 @@ post '/run' => sub {
     my $data = from_json( param( 'data' ), { utf8 => 0 } );
     $data->{client_id}      = 'Zonemaster Dancer Frontend';
     $data->{client_version} = __PACKAGE__->VERSION;
+
+    $data->{user_ip} = get_ip();
+    
     my $job_id = $client->start_domain_test( {%$data} );
     content_type 'application/json';
     return to_json( { job_id => $job_id } );

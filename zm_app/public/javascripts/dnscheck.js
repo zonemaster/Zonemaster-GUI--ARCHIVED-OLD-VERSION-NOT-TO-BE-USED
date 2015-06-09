@@ -372,7 +372,7 @@ dnscheck.directive('domainCheck',function(){
 
 dnscheck.directive('version',function(){
   return {
-    restrict: 'E',
+//    restrict: 'E',
     transclude: true,
     scope : true,
     controller: function($scope){
@@ -381,6 +381,8 @@ dnscheck.directive('version',function(){
         dataType : 'json',
         success: function(data){
           $scope.version = data.result;
+		  if (data.result.indexOf("Backend") > -1 && data.result.indexOf("Frontend") > -1 ) 
+			$scope.color = 'red';
         },
         error: function(){
           alert('Can\'t get version');
