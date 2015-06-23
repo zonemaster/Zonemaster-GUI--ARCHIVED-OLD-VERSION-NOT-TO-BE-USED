@@ -1,4 +1,11 @@
-Revision history for Perl module Zonemaster.
+Revision history for Zonemaster GUI.
+
+v1.0.3 2015-06-26
+	Fixes #111 - Add user geolocation support
+	Fixes #110 - Need to tell from_json() that we are feeding it Perl strings.
+	Fixes #109 - When using Apache as a frontend server and starman as a proxy backend the IP addresse is not available and thus not displayed correctly
+	Fixes #108 - Input field not visible on GUI (MAC/Chrome Version 42.0.2311.152 (64-bit))
+	Fixes #107 - More on "Domain does not exist"
 
 v1.0.2 2015-05-11
 	Fixes #103 - Add contact e-mail to the interface
