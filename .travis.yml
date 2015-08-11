@@ -13,13 +13,14 @@ perl:
     - "5.14"
 
 before_script:
-    - export ZONEMASTER_BACKEND_CONFIG_FILE=`dirname "$TRAVIS_BUILD_DIR"`/zonemster-backend/share/travis_postgresql_backend_config.ini
+    - export ZONEMASTER_BACKEND_CONFIG_FILE=`dirname "$TRAVIS_BUILD_DIR"`/zonemaster-backend/share/travis_postgresql_backend_config.ini
     - echo $ZONEMASTER_BACKEND_CONFIG_FILE
     - starman --listen=127.0.0.1:5080 -I./lib zm_app/bin/app.pl &
     
     - cd ..
     - pwd
     - git clone https://github.com/dotse/zonemaster-backend.git
+    - ls $ZONEMASTER_BACKEND_CONFIG_FILE
     - cd zonemaster-backend
     - cpanm --quiet --installdeps --notest .
     - if [[ "$TARGET" == "PostreSQL" ]]; then psql -c "create user travis_zonemaster WITH PASSWORD 'travis_zonemaster';" -U postgres; fi
