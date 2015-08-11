@@ -2,7 +2,7 @@ addons:
   postgresql: "9.3"
   
 env:
-    - TARGET=PostreSQL ZONEMASTER_BACKEND_CONFIG_FILE=\"$(dirname \"$TRAVIS_BUILD_DIR\")\"/zonemster-backend/share/travis_postgresql_backend_config.ini ZONEMASTER_ENVIRONMENT=TRAVIS ZONEMASTER_BACKEND_PORT=5000
+    - TARGET=PostreSQL ZONEMASTER_BACKEND_CONFIG_FILE=''$(dirname "$TRAVIS_BUILD_DIR")''/zonemster-backend/share/travis_postgresql_backend_config.ini ZONEMASTER_ENVIRONMENT=TRAVIS ZONEMASTER_BACKEND_PORT=5000
     
 language: perl
 
@@ -16,7 +16,6 @@ before_script:
     - echo $TRAVIS_BUILD_DIR
     - echo $HOME
     - echo $ZONEMASTER_BACKEND_CONFIG_FILE
-    - cpanm --quiet --installdeps --notest .
     - starman --listen=127.0.0.1:80 -I./lib zm_app/bin/app.pl
     
     - cd ..
