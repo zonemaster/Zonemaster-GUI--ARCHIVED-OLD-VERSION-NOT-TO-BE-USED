@@ -18,6 +18,7 @@ before_script:
     - starman --listen=127.0.0.1:5080 -I./lib zm_app/bin/app.pl &
     
     - cd ..
+    - pwd
     - git clone https://github.com/dotse/zonemaster-backend.git
     - cd zonemaster-backend
     - cpanm --quiet --installdeps --notest .
