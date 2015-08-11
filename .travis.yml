@@ -14,6 +14,7 @@ perl:
 
 before_script:
     - echo $TRAVIS_BUILD_DIR
+    - echo $HOME
     - cpanm --quiet --installdeps --notest .
     - starman --listen=127.0.0.1:80 -I./lib zm_app/bin/app.pl
     
