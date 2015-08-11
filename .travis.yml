@@ -16,7 +16,7 @@ before_script:
     - cd ..
     - git clone https://github.com/dotse/zonemaster-backend.git
     - cd zonemaster-backend
-    - cpanm -v --installdeps --notest --mirror http://cpan.mirrors.travis-ci.org .
+    - cpanm --quiet --installdeps --notest .
     - if [[ "$TARGET" == "PostreSQL" ]]; then psql -c "create user travis_zonemaster WITH PASSWORD 'travis_zonemaster';" -U postgres; fi
     - if [[ "$TARGET" == "PostreSQL" ]]; then psql -c 'create database travis_zonemaster OWNER travis_zonemaster;' -U postgres; fi
     - if [[ "$TARGET" == "PostreSQL" ]]; then cpanm DBD::Pg; fi
