@@ -32,4 +32,4 @@ before_script:
     - cd ..
     - cd zonemaster-gui
 script:
-    - perl Malefile.PL && make test
+    - perl Makefile.PL && make test
