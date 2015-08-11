@@ -15,7 +15,7 @@ perl:
 before_script:
     - echo $TRAVIS_BUILD_DIR
     - cpanm --quiet --installdeps --notest .
-    starman --listen=127.0.0.1:80 -I./lib zm_app/bin/app.pl
+    - starman --listen=127.0.0.1:80 -I./lib zm_app/bin/app.pl
     
     - cd ..
     - git clone https://github.com/dotse/zonemaster-backend.git
