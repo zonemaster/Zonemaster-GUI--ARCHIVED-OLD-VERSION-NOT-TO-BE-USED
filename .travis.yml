@@ -15,7 +15,7 @@ perl:
 before_script:
     - export ZONEMASTER_BACKEND_CONFIG_FILE=`dirname "$TRAVIS_BUILD_DIR"`/zonemster-backend/share/travis_postgresql_backend_config.ini
     - echo $ZONEMASTER_BACKEND_CONFIG_FILE
-    - starman --listen=127.0.0.1:5080 -I./lib zm_app/bin/app.pl
+    - starman --listen=127.0.0.1:5080 -I./lib zm_app/bin/app.pl &
     
     - cd ..
     - git clone https://github.com/dotse/zonemaster-backend.git
@@ -25,7 +25,7 @@ before_script:
     - if [[ "$TARGET" == "PostreSQL" ]]; then psql -c 'create database travis_zonemaster OWNER travis_zonemaster;' -U postgres; fi
     - if [[ "$TARGET" == "PostreSQL" ]]; then cpanm DBD::Pg; fi
     - if [[ "$TARGET" == "PostreSQL" ]]; then perl -I./lib ./script/create_db_postgresql_9.3.pl; fi
-    - starman --listen=127.0.0.1:5000 -I./lib/ script/zonemaster_webbackend.psgi
+    - starman --listen=127.0.0.1:5000 -I./lib/ script/zonemaster_webbackend.psgi &
     
     - cd ..
     - cd zonemaster-gui
