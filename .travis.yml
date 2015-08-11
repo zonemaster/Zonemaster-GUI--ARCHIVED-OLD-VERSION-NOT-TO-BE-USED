@@ -13,11 +13,9 @@ perl:
     - "5.14"
 
 before_script:
-    - ZONEMASTER_BACKEND_CONFIG_FILE=`dirname "$TRAVIS_BUILD_DIR"`/zonemster-backend/share/travis_postgresql_backend_config.ini;
-    - echo $TRAVIS_BUILD_DIR
-    - echo $HOME
+    - export ZONEMASTER_BACKEND_CONFIG_FILE=`dirname "$TRAVIS_BUILD_DIR"`/zonemster-backend/share/travis_postgresql_backend_config.ini
     - echo $ZONEMASTER_BACKEND_CONFIG_FILE
-    - starman --listen=127.0.0.1:80 -I./lib zm_app/bin/app.pl
+    - starman --listen=127.0.0.1:5080 -I./lib zm_app/bin/app.pl
     
     - cd ..
     - git clone https://github.com/dotse/zonemaster-backend.git
