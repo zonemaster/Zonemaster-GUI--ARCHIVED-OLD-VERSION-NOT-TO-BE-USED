@@ -2,7 +2,7 @@ addons:
   postgresql: "9.3"
   
 env:
-    - TARGET=PostreSQL ZONEMASTER_BACKEND_CONFIG_FILE=../zonemster-backend/share/travis_postgresql_backend_config.ini
+    - TARGET=PostreSQL ZONEMASTER_BACKEND_CONFIG_FILE=../zonemster-backend/share/travis_postgresql_backend_config.ini ZONEMASTER_ENVIRONMENT=TRAVIS ZONEMASTER_BACKEND_PORT=5000
     
 language: perl
 
@@ -13,6 +13,9 @@ perl:
     - "5.14"
 
 before_script:
+    - cpanm --quiet --installdeps --notest .
+    starman --listen=127.0.0.1:80 -I./lib zm_app/bin/app.pl
+    
     - cd ..
     - git clone https://github.com/dotse/zonemaster-backend.git
     - cd zonemaster-backend
@@ -21,6 +24,9 @@ before_script:
     - if [[ "$TARGET" == "PostreSQL" ]]; then psql -c 'create database travis_zonemaster OWNER travis_zonemaster;' -U postgres; fi
     - if [[ "$TARGET" == "PostreSQL" ]]; then cpanm DBD::Pg; fi
     - if [[ "$TARGET" == "PostreSQL" ]]; then perl -I./lib ./script/create_db_postgresql_9.3.pl; fi
+    - starman --listen=127.0.0.1:5000 -I./lib/ script/zonemaster_webbackend.psgi
     
+    - cd ..
+    - cd zonemaster-gui
 script:
     - perl Malefile.PL && make test
