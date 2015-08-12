@@ -31,4 +31,4 @@ before_script:
     - cd zonemaster-gui
 script:
     - perl Makefile.PL && make test
-    - phantomjs t/wait_for_version_string.js localhost:5000
+    - phantomjs t/wait_for_version_string.js localhost:5080
