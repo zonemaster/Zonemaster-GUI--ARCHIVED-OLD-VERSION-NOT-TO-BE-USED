@@ -19,7 +19,7 @@ function waitFor(testFx, onReady, timeOutMillis) {
                     clearInterval(interval); //< Stop this interval
                 }
             }
-        }, 250); //< repeat check every 250ms
+        }, 1000); //< repeat check every 250ms
 };
 
 
@@ -41,6 +41,7 @@ else {
 			console.log('Stripped down page text:\n' + page.plainText);
 			
 			waitFor(function() {
+console.log('Stripped down page text:\n' + page.plainText);
 				return page.evaluate(function() {
 					var getElementByXpath = function (path) {
 						return document.evaluate(path, document, null, 9, null).singleNodeValue;
