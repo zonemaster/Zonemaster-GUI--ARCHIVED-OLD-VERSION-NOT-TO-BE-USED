@@ -34,4 +34,5 @@ before_script:
 script:
     - perl Makefile.PL && make test
     - perl -I$BASE_DIR/zonemaster-backend/CodeSnippets/ $TRAVIS_BUILD_DIR/../zonemaster-backend/CodeSnippets/sample_api_call__version_info.pl
-    - phantomjs t/wait_for_version_string.js localhost:5080
+    - phantomjs --version
+    - phantomjs --web-security=no t/wait_for_version_string.js localhost:5080

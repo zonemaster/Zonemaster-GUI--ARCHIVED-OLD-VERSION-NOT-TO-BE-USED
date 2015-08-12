@@ -1,6 +1,6 @@
 
 function waitFor(testFx, onReady, timeOutMillis) {
-    var maxtimeOutMillis = timeOutMillis ? timeOutMillis : 30000, //< Default Max Timout is 30s
+    var maxtimeOutMillis = timeOutMillis ? timeOutMillis : 60000, //< Default Max Timout is 30s
         start = new Date().getTime(),
         condition = false,
         interval = setInterval(function() {
