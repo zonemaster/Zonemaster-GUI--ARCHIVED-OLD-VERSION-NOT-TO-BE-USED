@@ -33,7 +33,7 @@ else {
 	var url = 'http://'+system.args[1]+'/';
 
 	page.onError = function (msg, trace) {
-    console.log(msg);
+		console.log(msg);
 		trace.forEach(function(item) {
 			console.log('  ', item.file, ':', item.line);
 		});

@@ -18,7 +18,7 @@ before_script:
     - export BASE_DIR=`dirname "$TRAVIS_BUILD_DIR"`
     - echo $BASE_DIR
 
-    - starman --listen=127.0.0.1:5080 -I./lib zm_app/bin/app.pl &
+    - starman --error-log=/tmp/zm_front.log --workers=2 --listen=127.0.0.1:5080 -I./lib zm_app/bin/app.pl &
     
     - cd ..
     - git clone https://github.com/dotse/zonemaster-backend.git
@@ -29,7 +29,7 @@ before_script:
     - if [[ "$TARGET" == "PostreSQL" ]]; then cpanm --quiet --notest DBD::Pg; fi
     - export ZONEMASTER_BACKEND_CONFIG_FILE=`dirname "$TRAVIS_BUILD_DIR"`/zonemaster-backend/share/travis_postgresql_backend_config.ini
     - if [[ "$TARGET" == "PostreSQL" ]]; then perl -I./lib ./script/create_db_postgresql_9.3.pl; fi
-    - starman --listen=127.0.0.1:5000 -I./lib/ script/zonemaster_webbackend.psgi &
+    - starman --error-log=/tmp/zm_back.log --workers=2 --listen=127.0.0.1:5000 -I./lib/ script/zonemaster_webbackend.psgi &
     
     - cd ..
     - cd zonemaster-gui
@@ -39,3 +39,5 @@ script:
     - /tmp/travis-phantomjs/phantomjs --version
     - /tmp/travis-phantomjs/phantomjs --web-security=no --local-to-remote-url-access=yes --ignore-ssl-errors=yes t/wait_for_version_string.js localhost:5080 1
     - cat $BASE_DIR/zonemaster-gui/zm_app/logs/deployment.log 
+    - cat /tmp/zm_front.log
+    - cat /tmp/zm_back.log
