@@ -26,7 +26,7 @@ function waitFor(testFx, onReady, timeOutMillis) {
 var system = require('system');
 if (system.args.length === 1) {
     console.log('This script requires the hostname:port of the Zonemaster server as parameter');
-	phantom.exit();
+	phantom.exit(1);
 }
 else {
 	var page = require('webpage').create();
@@ -52,10 +52,8 @@ else {
 
 				console.log(result);
 				
-				phantom.exit();
+				phantom.exit(0);
 			});
-			
-			
 		}
 	});
 }
