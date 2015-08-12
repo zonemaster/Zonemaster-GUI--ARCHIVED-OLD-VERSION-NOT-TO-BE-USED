@@ -40,4 +40,5 @@ script:
     - perl Makefile.PL && make test
     - perl -I$BASE_DIR/zonemaster-backend/CodeSnippets/ $TRAVIS_BUILD_DIR/../zonemaster-backend/CodeSnippets/sample_api_call__version_info.pl
     - /tmp/travis-phantomjs/phantomjs --version
-    - /tmp/travis-phantomjs/phantomjs --web-security=no --local-to-remote-url-access=yes --ignore-ssl-errors=yes t/wait_for_version_string.js zonemaster.fr:5080
+    - /tmp/travis-phantomjs/phantomjs --web-security=no --local-to-remote-url-access=yes --ignore-ssl-errors=yes t/wait_for_version_string.js localhost:5080
+    - cat $BASE_DIR/zonemaster-gui/zm_app/logs/deployment.log 
