@@ -42,7 +42,7 @@ else {
 						return document.evaluate(path, document, null, 9, null).singleNodeValue;
 					};
 					
-					return (getElementByXpath("//div[@version and contains(., 'GIT_HEAD')]") ? true : false);
+					return (getElementByXpath("//div[@version and contains(., 'TRAVIS')]") ? true : false);
 				});
 			}, function() {
 
