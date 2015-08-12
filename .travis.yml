@@ -18,9 +18,7 @@ before_script:
     - starman --listen=127.0.0.1:5080 -I./lib zm_app/bin/app.pl &
     
     - cd ..
-    - pwd
     - git clone https://github.com/dotse/zonemaster-backend.git
-    - ls $ZONEMASTER_BACKEND_CONFIG_FILE
     - cd zonemaster-backend
     - cpanm --quiet --installdeps --notest .
     - if [[ "$TARGET" == "PostreSQL" ]]; then psql -c "create user travis_zonemaster WITH PASSWORD 'travis_zonemaster';" -U postgres; fi
@@ -33,3 +31,4 @@ before_script:
     - cd zonemaster-gui
 script:
     - perl Makefile.PL && make test
+    - phantomjs t/wait_for_version_string.js localhost:5000
