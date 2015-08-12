@@ -46,8 +46,8 @@ else {
 						return document.evaluate(path, document, null, 9, null).singleNodeValue;
 					};
 					
-//					return (getElementByXpath("//div[@version and contains(., 'TRAVIS')]") ? true : false);
-					return (getElementByXpath("//body") ? true : false);
+					return (getElementByXpath("//div[@version and contains(., 'TRAVIS')]") ? true : false);
+//					return (getElementByXpath("//body") ? true : false);
 				});
 			}, function() {
 

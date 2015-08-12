@@ -63,7 +63,7 @@ get '/parent' => sub {
 
 sub get_ip {
     my $ip = request->address;
-    $ip = request->header('X-Forwarded-For') if ($ip =~ /127\.0\.0\.1/ || $ip =~ /::1/);
+    $ip = request->header('X-Forwarded-For') if (($ip =~ /127\.0\.0\.1/ || $ip =~ /::1/) && request->header('X-Forwarded-For'));
     $ip =~ s/::ffff:// if ( $ip =~ /::ffff:/ );
     
     return $ip;
