@@ -37,7 +37,9 @@ else {
 		if (status !== "success") {
 			console.log("Unable to access network");
 		} else {
-			console.log("page [".url."] loaded");
+			console.log("page ["+url+"] loaded");
+			console.log('Stripped down page text:\n' + page.plainText);
+			
 			waitFor(function() {
 				return page.evaluate(function() {
 					var getElementByXpath = function (path) {
