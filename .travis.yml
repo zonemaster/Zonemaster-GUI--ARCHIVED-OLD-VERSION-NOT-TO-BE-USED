@@ -26,7 +26,7 @@ before_script:
     - cpanm --quiet --installdeps --notest .
     - if [[ "$TARGET" == "PostreSQL" ]]; then psql -c "create user travis_zonemaster WITH PASSWORD 'travis_zonemaster';" -U postgres; fi
     - if [[ "$TARGET" == "PostreSQL" ]]; then psql -c 'create database travis_zonemaster OWNER travis_zonemaster;' -U postgres; fi
-    - if [[ "$TARGET" == "PostreSQL" ]]; then cpanm --quiet --installdeps --notest DBD::Pg; fi
+    - if [[ "$TARGET" == "PostreSQL" ]]; then cpanm --quiet --notest DBD::Pg; fi
     - export ZONEMASTER_BACKEND_CONFIG_FILE=`dirname "$TRAVIS_BUILD_DIR"`/zonemaster-backend/share/travis_postgresql_backend_config.ini
     - if [[ "$TARGET" == "PostreSQL" ]]; then perl -I./lib ./script/create_db_postgresql_9.3.pl; fi
     - starman --listen=127.0.0.1:5000 -I./lib/ script/zonemaster_webbackend.psgi &
