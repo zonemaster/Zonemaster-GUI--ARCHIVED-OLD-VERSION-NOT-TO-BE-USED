@@ -30,12 +30,14 @@ if (system.args.length === 1) {
 }
 else {
 	var page = require('webpage').create();
+	var url = 'http://'+system.args[1]+'/';
 
-	page.open('http://'+system.args[1]+'/', function (status) {
+	page.open(url, function (status) {
 		// Check for page load success
 		if (status !== "success") {
 			console.log("Unable to access network");
 		} else {
+			console.log("page [".url."] loaded");
 			waitFor(function() {
 				return page.evaluate(function() {
 					var getElementByXpath = function (path) {
