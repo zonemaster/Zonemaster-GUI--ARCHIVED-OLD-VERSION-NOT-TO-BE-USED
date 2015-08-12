@@ -8,10 +8,7 @@ language: perl
 
 perl:
     - "5.20"
-    - "5.18"
-    - "5.16"
-    - "5.14"
-
+ 
 before_script:
     - mkdir /tmp/travis-phantomjs
     - wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -O /tmp/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
