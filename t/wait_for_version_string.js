@@ -51,12 +51,29 @@ else {
 			console.log("page ["+url+"] loaded");
 			console.log('Stripped down page text:\n' + page.plainText);
 			
+			// Wait for FAQ to appear
+			waitFor(function() {
+				return page.evaluate(function() {
+					var getElementByXpath = function (path) {
+						return document.evaluate(path, document, null, 9, null).singleNodeValue;
+					};
+					
+					return (getElementByXpath("//a[contains(., 'FAQ')]") ? true : false);
+				});
+			}, function() { //onReady
+				console.log("Webpage loaded");
+			}, function() { //onTimeout
+				console.log("waitFor 1:TIMEOUT");
+			});
+
+			//click the FAQ link
 			page.evaluate(function() {
 				console.log('page.evaluate:start');
 				var getElementByXpath = function (path) {
 					return document.evaluate(path, document, null, 9, null).singleNodeValue;
 				};
 								
+
 				var clickNode = function click(el){
 					var ev = document.createEvent("MouseEvent");
 					ev.initMouseEvent(
