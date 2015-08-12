@@ -76,6 +76,7 @@ get '/version' => sub {
     my $version;
     if ($ENV{ZONEMASTER_ENVIRONMENT}) {
 		$version = $ENV{ZONEMASTER_ENVIRONMENT}." [Engine:".$data->{zonemaster_engine} . " / Frontend:$VERSION / Backend:".$data->{zonemaster_backend} . " / IP address: $ip]";
+warn $version;
 	}
 	else {
 		$version = "Zonemaster Test Engine Verison:".$data->{zonemaster_engine} . ", IP address: $ip";
