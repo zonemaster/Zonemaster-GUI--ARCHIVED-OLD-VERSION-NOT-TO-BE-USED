@@ -11,7 +11,7 @@ var steps = [
 	{"method": "WAIT_FOR_XPATH", "xpath": "//div[contains(@ng-show, 'inactive_domain_check')]//*/div[contains(@ng-repeat, 'in ns_list')][3]", "time_seconds": 60},
 	{"method": "CLICK_NODE", "xpath": "//div[contains(@ng-show, 'inactive_domain_check')]//*/a[contains(@ng-click, 'domainCheck')]"},
 	{"method": "SLEEP", "time_seconds": 3 },
-	{"method": "WAIT_FOR_XPATH", "xpath": "//div[contains(@ng-show, 'inactive_domain_check')]//*/div[contains(@class, 'alert-INFO') and contains(., 'Using version')]", "time_seconds": 60},
+	{"method": "WAIT_FOR_XPATH", "xpath": "//div[contains(@ng-show, 'inactive_domain_check')]//*/div[contains(@class, 'alert-INFO') and contains(., 'Using version')]", "time_seconds": 120},
 ];
 
 
@@ -27,7 +27,7 @@ function sleep (time_seconds) {
 };
 
 function waitForXPath(xpath, time_secs) {
-	var maxtimeOutMillis = time_secs ? time_secs*1000 : 60000, 
+	var maxtimeOutMillis = time_secs ? time_secs*1000 : 5*60*1000, 
 		start = new Date().getTime(),
 		condition = false,
 		interval = setInterval(function() {
