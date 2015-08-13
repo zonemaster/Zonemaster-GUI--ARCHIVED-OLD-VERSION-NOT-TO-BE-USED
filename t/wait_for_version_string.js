@@ -1,27 +1,85 @@
 
-function waitFor(testFx, onReady, onTimeout, timeOutMillis) {
-    var maxtimeOutMillis = timeOutMillis ? timeOutMillis : 60000, //< Default Max Timout is 30s
-        start = new Date().getTime(),
-        condition = false,
-        interval = setInterval(function() {
-            if ( (new Date().getTime() - start < maxtimeOutMillis) && !condition ) {
-                // If not time-out yet and condition not yet fulfilled
-                condition = (typeof(testFx) === "string" ? eval(testFx) : testFx()); //< defensive code
-            } else {
-                if(!condition) {
-                    // If condition still not fulfilled (timeout but condition is 'false')
-                    console.log("'waitFor()' timeout");
-                    onTimeout();
-                } else {
-                    // Condition fulfilled (timeout and/or condition is 'true')
-//                    console.log("'waitFor()' finished in " + (new Date().getTime() - start) + "ms.");
-                    typeof(onReady) === "string" ? eval(onReady) : onReady(); //< Do what it's supposed to do once the condition is fulfilled
-                    clearInterval(interval); //< Stop this interval
-                }
-            }
-        }, 250); //< repeat check every 250ms
+
+var tickCounter = 0;
+var stepRunnerStatus = { "stepRunnerCounter": 0, "stepRunning": false};
+var steps = [
+	{"method": "WAIT_FOR_XPATH", "xpath": "//a[contains(., 'FAQ')]", "time_seconds": 5}, // PhantomJS bug workaraound
+	{"method": "CLICK_NODE", "xpath": "//a[contains(., 'FAQ')]"},     // PhantomJS bug workaraound
+	{"method": "WAIT_FOR_XPATH", "xpath": "//div[@version and contains(., 'TRAVIS')]", "time_seconds": 5},
+//	{"method": "SLEEP", "time": 5 },
+];
+
+
+function moveToNextStep () {
+	stepRunnerStatus["stepRunning"] = false;
+	stepRunnerStatus["stepRunnerCounter"]++;
 };
 
+function sleep (time_seconds) {
+	setTimeout(function() {
+		moveToNextStep();
+	}, steps[stepRunnerStatus["stepRunnerCounter"]]["time"] * 1000);
+};
+
+function waitForXPath(xpath, time_secs) {
+	var maxtimeOutMillis = time_secs ? time_secs*1000 : 60000, 
+		start = new Date().getTime(),
+		condition = false,
+		interval = setInterval(function() {
+//			console.log('Stripped down page text:\n' + page.plainText);
+			if ( (new Date().getTime() - start < maxtimeOutMillis) && !condition ) {
+				// If not time-out yet and condition not yet fulfilled
+				var testFx = function(path) {
+					return page.evaluate(function(path) {
+						var getElementByXpath = function () {
+							return document.evaluate(path, document, null, 9, null).singleNodeValue;
+						};
+						
+						return (getElementByXpath(path) ? true : false);
+					}, path);
+				}
+				
+				condition = testFx(xpath);
+			} else {
+				if(!condition) {
+					// If condition still not fulfilled (timeout but condition is 'false')
+					console.log("WAIT_FOR_XPATH:["+xpath+"] TIMEOUT");
+					phantom.exit(1);
+				} else {
+					console.log("WAIT_FOR_XPATH:["+xpath+"] Finished");
+					moveToNextStep();
+					clearInterval(interval); //< Stop this interval
+				}
+			}
+		}, 500); //< repeat check every 250ms
+};
+
+function clickNode (xpath) {
+	page.evaluate(function (xpath) {
+		var getElementByXpath = function (path) {
+			return document.evaluate(path, document, null, 9, null).singleNodeValue;
+		};
+						
+		var clickNode = function click(el){
+			var ev = document.createEvent("MouseEvent");
+			ev.initMouseEvent("click", true, true, window, null, 0, 0, 0, 0, false, false, false, false, 0, null);
+			el.dispatchEvent(ev);
+		};
+
+		var element = getElementByXpath(xpath);
+		if (element) {
+			clickNode(element);
+			console.log('Clicked on XPath -> '+xpath);
+		}
+		else {
+			console.log('Element with XPath -> '+xpath+' NOT FOUND');
+		}
+		
+		return;
+	}, xpath );
+	
+	moveToNextStep();
+}
 
 var system = require('system');
 if (system.args.length === 1) {
@@ -48,74 +106,44 @@ else {
 		if (status !== "success") {
 			console.log("Unable to access network");
 		} else {
-			console.log("page ["+url+"] loaded");
-			console.log('Stripped down page text:\n' + page.plainText);
-			
-			// Wait for FAQ to appear
-			waitFor(function() {
-				return page.evaluate(function() {
-					var getElementByXpath = function (path) {
-						return document.evaluate(path, document, null, 9, null).singleNodeValue;
-					};
-					
-					return (getElementByXpath("//a[contains(., 'FAQ')]") ? true : false);
-				});
-			}, function() { //onReady
-				console.log("Webpage loaded");
-			}, function() { //onTimeout
-				console.log("waitFor 1:TIMEOUT");
-			});
+			var interval = setInterval(function() {
+				if (tickCounter < 100) {
+					tickCounter++;
+					if (!stepRunnerStatus["stepRunning"]) {
+						if (stepRunnerStatus["stepRunnerCounter"] < steps.length) {
+							console.log("["+tickCounter+"]No step currently executing");
+							stepRunnerStatus["stepRunning"] = true;
 
-			//click the FAQ link
-			page.evaluate(function() {
-				console.log('page.evaluate:start');
-				var getElementByXpath = function (path) {
-					return document.evaluate(path, document, null, 9, null).singleNodeValue;
-				};
-								
-
-				var clickNode = function click(el){
-					var ev = document.createEvent("MouseEvent");
-					ev.initMouseEvent(
-						"click",
-						true /* bubble */, true /* cancelable */,
-						window, null,
-						0, 0, 0, 0, /* coordinates */
-						false, false, false, false, /* modifier keys */
-						0 /*left*/, null
-					);
-					el.dispatchEvent(ev);
-				};
-
-				var element = getElementByXpath("//a[contains(., 'FAQ')]");
-				console.log("getElementByXpath:done");
-				clickNode(element);
-				console.log('Clicked on FAQ');
-			});
-
-			waitFor(function() {
-console.log('\n------------------------------------\nStripped down page text:\n' + page.plainText);
-				return page.evaluate(function() {
-					var getElementByXpath = function (path) {
-						return document.evaluate(path, document, null, 9, null).singleNodeValue;
-					};
-					
-					return (getElementByXpath("//div[@version and contains(., 'TRAVIS')]") ? true : false);
-//					return (getElementByXpath("//body") ? true : false);
-				});
-			}, function() { //onReady
-
-				var result = page.evaluate(function() {
-					return "RESULT:OK";
-				});
-
-				console.log(result);
-				
-				phantom.exit(0);
-			}, function() { //onTimeout
-				console.log("TIMEOUT");
-			});
-			
+							if (steps[stepRunnerStatus["stepRunnerCounter"]]["method"] == "SLEEP") {
+								sleep(5);
+							}
+							else if (steps[stepRunnerStatus["stepRunnerCounter"]]["method"] == "WAIT_FOR_XPATH") {
+								waitForXPath(steps[stepRunnerStatus["stepRunnerCounter"]]["xpath"], steps[stepRunnerStatus["stepRunnerCounter"]]["time_seconds"]);
+							}
+							else if (steps[stepRunnerStatus["stepRunnerCounter"]]["method"] == "CLICK_NODE") {
+								clickNode(steps[stepRunnerStatus["stepRunnerCounter"]]["xpath"]);
+							}
+							else {
+								console.log("UNKNOWN METHOD: "+steps[stepRunnerStatus["stepRunnerCounter"]]["method"]);
+								phantom.exit(1);
+							}
+						}
+						else {
+							console.log("["+tickCounter+"]All steps executed: DONE");
+							phantom.exit(0);
+						}
+					}
+					else {
+						console.log("["+tickCounter+"]Executing setp: "+stepRunnerStatus["stepRunnerCounter"]+" -> "+steps[stepRunnerStatus["stepRunnerCounter"]]["method"]);
+					}
+				}
+				else {
+					console.log("tickCounter:EXPIRED");
+					clearInterval(interval);
+					phantom.exit(1);
+				}
+			}
+			, 1000);
 		}
 	});
 }

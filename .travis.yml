@@ -13,13 +13,8 @@ perl:
     - "5.14"
  
 before_script:
-    - mkdir /tmp/travis-phantomjs
-    - wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -O /tmp/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
-    - tar -xvf /tmp/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -C /tmp/travis-phantomjs
-    - ls -al /tmp/travis-phantomjs
-
     - export BASE_DIR=`dirname "$TRAVIS_BUILD_DIR"`
-    - echo $BASE_DIR
+    - export ZONEMASTER_BACKEND_CONFIG_FILE=$BASE_DIR/zonemaster-backend/share/travis_postgresql_backend_config.ini
 
     - starman --error-log=/tmp/zm_front.log --workers=2 --listen=127.0.0.1:5080 -I./lib zm_app/bin/app.pl &
     
@@ -30,7 +25,6 @@ before_script:
     - if [[ "$TARGET" == "PostreSQL" ]]; then psql -c "create user travis_zonemaster WITH PASSWORD 'travis_zonemaster';" -U postgres; fi
     - if [[ "$TARGET" == "PostreSQL" ]]; then psql -c 'create database travis_zonemaster OWNER travis_zonemaster;' -U postgres; fi
     - if [[ "$TARGET" == "PostreSQL" ]]; then cpanm --quiet --notest DBD::Pg; fi
-    - export ZONEMASTER_BACKEND_CONFIG_FILE=`dirname "$TRAVIS_BUILD_DIR"`/zonemaster-backend/share/travis_postgresql_backend_config.ini
     - if [[ "$TARGET" == "PostreSQL" ]]; then perl -I./lib ./script/create_db_postgresql_9.3.pl; fi
     - starman --error-log=/tmp/zm_back.log --workers=2 --listen=127.0.0.1:5000 -I./lib/ script/zonemaster_webbackend.psgi &
     
@@ -38,9 +32,9 @@ before_script:
     - cd zonemaster-gui
 script:
     - perl Makefile.PL && make test
-    - perl -I$BASE_DIR/zonemaster-backend/CodeSnippets/ $TRAVIS_BUILD_DIR/../zonemaster-backend/CodeSnippets/sample_api_call__version_info.pl
+    - perl -I$BASE_DIR/zonemaster-backend/CodeSnippets/ $BASE_DIR/zonemaster-backend/CodeSnippets/sample_api_call__version_info.pl
     - phantomjs --version
-    - phantomjs --web-security=no --local-to-remote-url-access=yes --ignore-ssl-errors=yes t/wait_for_version_string.js localhost:5080 1
+    - phantomjs --web-security=no --local-to-remote-url-access=yes --ignore-ssl-errors=yes t/wait_for_version_string.js localhost:5080
     - cat $BASE_DIR/zonemaster-gui/zm_app/logs/deployment.log 
     - cat /tmp/zm_front.log
     - cat /tmp/zm_back.log
