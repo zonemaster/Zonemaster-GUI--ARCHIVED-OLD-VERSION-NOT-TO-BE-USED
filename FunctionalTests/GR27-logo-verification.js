@@ -1,6 +1,6 @@
 var main_url = 'http://zonemaster.rd.nic.fr:5080/';
 
-casper.test.begin('Zonemaster test GR27 - Verify the existence of Afnic and .SE logo', 3, function suite(test) {
+casper.test.begin('Zonemaster test GR27 - Verify the existence of Afnic and IIS logo', 3, function suite(test) {
 
 	casper.start();
 
@@ -13,9 +13,9 @@ casper.test.begin('Zonemaster test GR27 - Verify the existence of Afnic and .SE 
 		this.test.assertResourceExists('/images/Afnic-logo.png', 'Afnic Logo exists');
 	});
 
-	// Existence of .SE Logo
+	// Existence of IIS Logo
         casper.then(function() {
-                this.test.assertResourceExists('/images/IIS-logo.png', '.SE Logo exists');
+                this.test.assertResourceExists('/images/IIS-logo.png', 'IIS Logo exists');
         });
 
 	casper.run(function() {

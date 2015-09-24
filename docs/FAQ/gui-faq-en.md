@@ -33,7 +33,7 @@ conducted by the zonemaster tool is documented in the [Test Requirements
 document](https://github.com/dotse/zonemaster/blob/master/docs/requirements/TestRequirements.md)
 
 #### 2. Who is behind Zonemaster? <a name="q2"></a>
-Zonemaster is a joint project between .SE (registry operator of .se and .nu TLD) and Afnic 
+Zonemaster is a joint project between IIS (registry operator of .se and .nu TLD) and Afnic 
 (registry operator of .fr TLD and those of the overseas territories of France). 
 
 #### 3. How can Zonemaster help me? <a name="q3"></a>

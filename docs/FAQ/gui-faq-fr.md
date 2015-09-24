@@ -45,7 +45,7 @@ L'ensemble des tests réalisés par Zonemaster est décrit au sein du document
 
 Zonemaster est un projet conjoint entre l'Afnic (multi-registre français de 
 ccTLDs .fr, .re, .pm, .tf, .wf, .yt et de gTLDs .paris, ...) d'une part et
-le .SE (registre suédois des ccTLDs .se et .nu) d'autre part.
+le IIS (registre suédois des ccTLDs .se et .nu) d'autre part.
 
 #### 3. Qu'est-ce que Zonemaster peut faire pour moi ? <a name="q3"></a>
 
@@ -69,7 +69,7 @@ ou d'avertissement pour obtenir plus de détails sur le problème qui a été d�
 
 Personne ne peut donner de jugement définitif quand à la bonne configuration
 d'une zone (même si certaines erreurs font toutefois consensus). Il est très 
-important de comprendre que les équipe de l'Afnic et du .SE derrière la 
+important de comprendre que les équipe de l'Afnic et du IIS derrière la 
 conception de Zonemaster ne prétendent pas détenir la connaissance absolue
 sur tous les aspects vérifiés au cours de l'analyse d'une zone. Parfois
 des règles font débat entre pays, mais aussi plus localement. Nous avons
