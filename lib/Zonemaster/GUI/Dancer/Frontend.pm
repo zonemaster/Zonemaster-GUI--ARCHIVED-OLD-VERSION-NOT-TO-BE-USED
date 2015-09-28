@@ -14,7 +14,7 @@ our $VERSION = '1.0.3';
 use Text::Markdown 'markdown';
 use HTTP::Tiny;
 
-my $faq_url_base = 'https://raw.githubusercontent.com/dotse/zonemaster/master/docs/documentation/gui-faq-%s.md';
+my $faq_url_base = 'https://raw.githubusercontent.com/dotse/zonemaster-gui/master/docs/FAQ/gui-faq-%s.md';
 my %faqs;
 my $http = HTTP::Tiny->new;
 for my $lang ( qw[sv en fr] ) {
