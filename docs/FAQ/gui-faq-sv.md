@@ -24,7 +24,7 @@ Zonemaster är ett program designat för att hjälpa människor att kontrollera,
 
 #### 2. Vem har utvecklat Zonemaster? <a name="q2"></a>
 
-Zonemaster är ett samarbetsprojekt mellan .SE (Registry för TLD:erna .SE och .NU) och AFNIC
+Zonemaster är ett samarbetsprojekt mellan IIS (Registry för TLD:erna IIS och .NU) och AFNIC
 (Registry för TLD:n .FR och de mindre TLD:er som tillhör Frankfrike).
 
 #### 3. Hur kan Zonemaster hjälpa mig? <a name="q3"></a>
@@ -42,7 +42,7 @@ Till exempel, om vi skulle testa domänen ”iis.se” och få ett felmeddelande
 #### 5. Hur kan Zonemaster bedömma vad som är rätt och fel? <a name="q5"></a>
 
 Ingen kan ge ett definitivt, slutgiltigt utlåtande om en domäns hälsa. Detta är 
-viktigt att poängtera. .SE, AFNIC och människorna bakom Zonemaster påstår inte 
+viktigt att poängtera. IIS, AFNIC och människorna bakom Zonemaster påstår inte 
 att Zonemaster alltid har helt rätt. I vissa fall går åsikter isär, speciellt 
 mellan olika länder, men ibland även lokalt. Vi har tillsammans inom samarbetsprojektet
 gjort vårt allra bästa att ta fram en så bra som möjligt policy för hur dessa

@@ -1,7 +1,7 @@
 Zonemaster
 ==========
 
-Zonemaster is a cooperative project between .SE and AFNIC. It is a successor to both .SE's DNSCheck and AFNIC's Zonecheck.
+Zonemaster is a cooperative project between IIS and AFNIC. It is a successor to both IIS's DNSCheck and AFNIC's Zonecheck.
 
 This module is the Web Interface part of the Zonemaster project. It is only usable with the zonemaster-backend module
 
