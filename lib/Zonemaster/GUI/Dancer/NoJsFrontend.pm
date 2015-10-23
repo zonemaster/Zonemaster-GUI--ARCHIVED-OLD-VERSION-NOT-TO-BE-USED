@@ -8,7 +8,7 @@ use Plack::Builder;
 use HTML::Entities;
 use Zonemaster::GUI::Dancer::Client;
 
-our $VERSION = '1.0.3';
+our $VERSION = '1.0.4';
 
 my $backend_port = 5000;
 $backend_port = $ENV{ZONEMASTER_BACKEND_PORT} if ($ENV{ZONEMASTER_BACKEND_PORT});
