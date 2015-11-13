@@ -106,7 +106,7 @@
         <tab tab-title="{{'History'|translate}}" tab-id="history">
         <br>
           <div class="" ng-repeat="item in history">
-            <span class="history-{{item.overall_result}}">&#x25C9;</span>&nbsp;<a href="/test/{{item.id}}">{{item.creation_time | asDate | date:"yyyy-MM-ddTHH:mmZ"}}</a>
+            <span class="history-{{item.overall_result}}">&#x25C9;</span>&nbsp;<a target="_self" href="/test/{{item.id}}">{{item.creation_time | asDate | date:"yyyy-MM-ddTHH:mmZ"}}</a>
           </div>
         </tab>
       </navigation>
