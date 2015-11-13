@@ -1,8 +1,9 @@
-FROM opensuse
+FROM opensuse:13.2
 MAINTAINER Michal TOMA <toma@nic.fr>
 
 # Install basic dependencies
-RUN zypper --non-interactive in make gcc git libopenssl-devel timezone postgresql-server postgresql-devel postgresql perl-DBD-Pg perl-App-cpanminus perl-aliased perl-Module-Install perl-Parse-PMFile
+RUN pwd
+RUN zypper --non-interactive in make gcc git libopenssl-devel timezone postgresql-server postgresql-devel postgresql perl-DBD-Pg perl-App-cpanminus perl-aliased perl-Module-Install
 RUN git config --global http.sslVerify false
 
 # Prepare the PostgrSQL backend
