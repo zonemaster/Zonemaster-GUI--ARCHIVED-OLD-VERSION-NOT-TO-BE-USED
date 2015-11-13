@@ -123,9 +123,9 @@
 			<% END %>
 		</p>
 		<% IF test_id %>
-			<a href="<% request.uri_base %>/test/<% test_id %>">Javascript Interface</a>
+			<a href="/test/<% test_id %>">Javascript Interface</a>
 		<% ELSE %>
-			<a href="<% request.uri_base %>">Javascript Interface</a>
+			<a href="/">Javascript Interface</a>
 		<% END %>
 	</body>
 </html>
