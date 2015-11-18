@@ -31,10 +31,9 @@
       </div>
     </div>
     <br>
-<!--    <legend> {{'Digests'|translate}} <button class="pull-right btn btn-link btn-sm" ng-click="addDigest()"><span class="fa fa-plus"></span></button></legend> -->
-	<legend> {{'Digests'|translate}} <button class="pull-right btn btn-link btn-sm"><span class="fa fa-plus"></span></button></legend>
+    <legend> {{'Digests'|translate}} <button class="pull-right btn btn-link btn-sm" ng-click="addDigest()"><span class="fa fa-plus"></span></button></legend>
     <div ng-repeat="(idx,ds) in ds_list" class="row">
-      <div class="col-xs-6">
+      <div class="col-xs-4">
         <select ng-model="ds.algorithm" class="form-control">
           <option value="sha256">SHA-256</option>
           <option value="sha1">SHA-1</option>
@@ -42,6 +41,15 @@
       </div>
       <div class="col-xs-5">
         <input type="text" ng-model="ds.digest" placeholder="Digest" class="form-control">  
+      </div>
+      <div class="col-xs-4">
+        <select ng-model="ds.digest_type" class="form-control">
+          <option value="sha256">SHA-256</option>
+          <option value="sha1">SHA-1</option>
+        </select>  
+      </div>
+      <div class="col-xs-5">
+        <input type="text" ng-model="ds.key" placeholder="Digest" class="form-control">  
       </div>
       <div class="col-xs-1">
         <button class="pull-right btn btn-link btn-sm" ng-click="removeDigest(idx)"><span class="fa fa-minus"></span></button>
