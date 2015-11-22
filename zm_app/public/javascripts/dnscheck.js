@@ -179,7 +179,13 @@ dnscheck.directive('domainCheck',function(){
           a.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
         };
 
-        $scope.getModules = function(result){
+        $scope.exportHTML = function(evt){
+          var a = evt.target;
+          var html = $('#adv_result').html();
+          a.setAttribute('href', 'data:text/html;charset=utf-8,' + '<html><head><link rel="stylesheet" href="/css/bootstrap.min.css" /></head><body><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">' + encodeURIComponent(html) + '</div></body></html>');
+        };
+
+		$scope.getModules = function(result){
           var modules = {};
           for( var item in result ){
             if( typeof modules[result[item].module] === 'undefined' ) modules[result[item].module] = 'check';
