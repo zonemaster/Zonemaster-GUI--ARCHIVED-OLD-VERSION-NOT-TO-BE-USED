@@ -17,5 +17,10 @@
     ,"Link"                                     :"Länk"
 	,"What is an undelegated domain test?"		:"Vad är ett odelegerat domäntest? "
 	,"Non-Javascript Interface"					:"Gränssnitt utan Javascript"
+	,"Key Tag"									:"Key Tag"
+	,"Algorithm"								:"Algorithm"
+	,"Digest type"								:"Digest type"
+	,"Digest"									:"Digest"
+
     ,"":""
 }
