@@ -20,39 +20,23 @@ any [ 'get', 'post' ] => '/export' => sub {
     no warnings 'uninitialized';
 
     if ( $allparams{'type'} eq 'HTML' ) {
-		my $c              = Zonemaster::GUI::Dancer::Client->new( { url => $url } );
-		my $test_result     = $c->get_test_results( { id => $allparams{'test_id'}, language => 'en' } );
-		return "HELLO FROm Export";
-=coment
-		my $backend_params  = $test_result->{params};
-		my $previous_module = '';
-		my $template_params = params_backend2template( $backend_params );
-		my @test_results;
-		my $last_module_index = 0;
-		my $module_type;
-		my %severity = ( INFO => 0, NOTICE => 1, WARNING => 2, ERROR => 3 );
+		my $c = Zonemaster::GUI::Dancer::Client->new( { url => $url } );
+		my $test_result = $c->get_test_results( { id => $allparams{'test_id'}, language => $allparams{'lang'} } );
 
+		my @test_results;
+		my $previous_module = '';
 		foreach my $result ( @{ $test_result->{results} } ) {
 			if ( $previous_module ne $result->{module} ) {
 				push( @test_results, { is_module => 1, message => $result->{module} } );
-				$test_results[$last_module_index]->{type} = lc( $module_type );
-				$last_module_index                        = $#test_results;
-				$previous_module                          = $result->{module};
-				undef( $module_type );
+				$previous_module = $result->{module};
 			}
-			$module_type = $result->{level} if ( $severity{$module_type} < $severity{ $result->{level} } );
 
-			push( @test_results,
-				{ is_module => 0, message => $result->{message}, type => lc( $result->{level} ) } );
+			push( @test_results, { is_module => 0, message => $result->{message}, class => "alert alert-$result->{level}" } );
 		}
-		$test_results[$last_module_index]->{type} = lc( $module_type );
 
+		my $template_params;
 		$template_params->{test_results}  = \@test_results;
-		$template_params->{test_running}  = 0;
-		$template_params->{test_id}       = $allparams{'test_id'};
-		$template_params->{test_progress} = 100;
-		template 'nojs_main_view', $template_params, { layout => undef };
-=cut
+		template 'export', $template_params, { layout => undef };
     }
 };
 

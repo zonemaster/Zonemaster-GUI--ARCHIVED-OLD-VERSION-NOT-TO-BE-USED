@@ -61,7 +61,7 @@
         <tab tab-title="{{'Export'|translate}}" tab-id="export">
           <br>
           <a download="report.txt" class="btn btn-primary" ng-click="exportFile($event)">{{'Download'|translate}}</a>
-          <a class="btn btn-primary" ng-click="exportHTML($event)">{{'Download HTML'|translate}}</a>
+          <a target="_self" class="btn btn-primary" ng-click="exportHTML($event)">{{'Download HTML'|translate}}</a>
         </tab>
         <tab tab-title="{{'History'|translate}}" tab-id="history">
         <br>

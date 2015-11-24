@@ -182,7 +182,7 @@ dnscheck.directive('domainCheck',function(){
         $scope.exportHTML = function(evt){
           var a = evt.target;
           var html = $('#adv_result').html();
-          a.setAttribute('href', 'data:text/html;charset=utf-8,' + '<html><head><link rel="stylesheet" href="/css/bootstrap.min.css" /></head><body><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">' + encodeURIComponent(html) + '</div></body></html>');
+          a.setAttribute('href', '/export?type=HTML&lang=' + $rootScope.language + '&test_id=' + $scope.job_id);
         };
 
 		$scope.getModules = function(result){
