@@ -220,7 +220,7 @@ dnscheck.directive('domainCheck',function(){
         };
 
         $scope.addDigest = function(){
-          $scope.ds_list.push({algorithm:"",digest:""});
+          $scope.ds_list.push({keytag:"", algorithm:"", digtype: "", digest:""});
         };
 
         $scope.removeNS = function(idx){
@@ -249,7 +249,7 @@ dnscheck.directive('domainCheck',function(){
               $scope.$apply($scope.getModules(data.result.results));
               $scope.$apply($scope.form = data.result.params);
               $scope.$apply($scope.ns_list = data.result.params.nameservers);
-              $scope.$apply($scope.ds_list = data.result.params.ds_digest_pairs);
+              $scope.$apply($scope.ds_list = data.result.params.ds_info);
               if (data.result.params.nameservers) {
                   $scope.$apply($scope.contentUrl = '/ang/inactive_domain_check');
                   if ($rootScope.panes) {
@@ -311,7 +311,7 @@ dnscheck.directive('domainCheck',function(){
         $scope.domainCheck = function(){
 			if($scope.inactive) { 
 				$scope.form.nameservers = $scope.ns_list;
-				$scope.form.ds_digest_pairs = $scope.ds_list;
+				$scope.form.ds_info = $scope.ds_list;
 			}
 			
 			$.ajax('/check_syntax',{
