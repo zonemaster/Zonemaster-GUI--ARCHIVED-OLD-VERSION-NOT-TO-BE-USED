@@ -18,7 +18,7 @@ Zonemaster
 
 #### 1. Zonemaster c'est quoi ? <a name="q1"></a>
 
-Zonemaster est un outil qui a été créé dans le but d'aider au diagnostique,
+Zonemaster est un outil qui a été créé dans le but d'aider au diagnostic,
 de mesurer et aussi permettre à ses utilisateurs de mieux comprendre le
 fonctionnement du DNS (Domain Name System). Il est principalement constitué
 de 3 éléments qui sont:
