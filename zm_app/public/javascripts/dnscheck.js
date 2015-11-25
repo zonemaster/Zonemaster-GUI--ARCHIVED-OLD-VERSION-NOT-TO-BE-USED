@@ -179,7 +179,12 @@ dnscheck.directive('domainCheck',function(){
           a.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
         };
 
-        $scope.getModules = function(result){
+        $scope.exportHTML = function(evt){
+          var a = evt.target;
+          a.setAttribute('href', '/export?type=HTML&lang=' + $rootScope.language + '&test_id=' + $scope.job_id);
+        };
+
+		$scope.getModules = function(result){
           var modules = {};
           for( var item in result ){
             if( typeof modules[result[item].module] === 'undefined' ) modules[result[item].module] = 'check';

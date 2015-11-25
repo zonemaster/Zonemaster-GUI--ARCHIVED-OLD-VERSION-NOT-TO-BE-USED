@@ -191,3 +191,7 @@ a.header-a {
 .btn-link { color : #ddf; }
 .btn-link:hover { color : #fff; }
 .loading { width:64px;height:64px;background-image: url("/images/loading.gif");}
+label {
+	white-space:nowrap;
+	font-size :8pt;
+}
