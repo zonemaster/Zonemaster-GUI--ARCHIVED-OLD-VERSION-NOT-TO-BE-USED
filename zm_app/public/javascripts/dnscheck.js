@@ -181,7 +181,6 @@ dnscheck.directive('domainCheck',function(){
 
         $scope.exportHTML = function(evt){
           var a = evt.target;
-          var html = $('#adv_result').html();
           a.setAttribute('href', '/export?type=HTML&lang=' + $rootScope.language + '&test_id=' + $scope.job_id);
         };
 
