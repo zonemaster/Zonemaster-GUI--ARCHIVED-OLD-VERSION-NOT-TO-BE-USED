@@ -14,9 +14,9 @@
       <div ng-show="$parent.form.advanced" class="advanced">
         <label class="checkbox"><input type="checkbox" ng-model="$parent.form.ipv4" ng-disabled="!$parent.form.ipv6"> IPv4</label>
         <label class="checkbox"><input type="checkbox" ng-model="$parent.form.ipv6" ng-disabled="!$parent.form.ipv4"> IPv6</label>
-        <select ng-model="$parent.form.profile" class="form-control" disabled>
+        <select ng-model="$parent.form.profile" class="form-control">
           <option value="default_profile">Default</option>
-          <option value="test_profile_1">Test profile 1</option>
+          <option value="test_profile_1">IANA profile</option>
           <option value="test_profile_2">Test profile 2</option>
         </select>
       </div>
