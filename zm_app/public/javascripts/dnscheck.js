@@ -249,25 +249,26 @@ dnscheck.directive('domainCheck',function(){
             data : { id: $scope.job_id, language: $rootScope.language },
             dataType : 'json',
             success: function(data){
-              $scope.$apply($scope.test = { id: data.result.id, creation_time: data.result.creation_time});
-              $scope.$apply($scope.result = data.result.results);
-              $scope.$apply($scope.getModules(data.result.results));
-              $scope.$apply($scope.form = data.result.params);
-              $scope.$apply($scope.ns_list = data.result.params.nameservers);
-              $scope.$apply($scope.ds_list = data.result.params.ds_info);
+              $scope.test = { id: data.result.id, creation_time: data.result.creation_time};
+              $scope.result = data.result.results;
+              $scope.getModules(data.result.results);
+              $scope.form = data.result.params;
+              $scope.ns_list = data.result.params.nameservers;
+              $scope.ds_list = data.result.params.ds_info;
               if (data.result.params.nameservers) {
-                  $scope.$apply($scope.contentUrl = '/ang/inactive_domain_check');
+                  $scope.contentUrl = '/ang/inactive_domain_check';
                   if ($rootScope.panes) {
                       $rootScope.panes[1].selected = true
                       $rootScope.panes[0].selected = false
                   }
               } else {
-                  $scope.$apply($scope.contentUrl = '/ang/domain_check');
+                  $scope.contentUrl = '/ang/domain_check';
                   if ($rootScope.panes) {
                       $rootScope.panes[0].selected = true
                       $rootScope.panes[1].selected = false
                   }
               }
+              $scope.$apply();
               $.ajax('/history',{
                 data : { data: JSON.stringify($scope.form) },
                 dataType : 'json',
