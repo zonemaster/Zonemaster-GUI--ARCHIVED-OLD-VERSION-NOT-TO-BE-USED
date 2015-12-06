@@ -179,7 +179,12 @@ dnscheck.directive('domainCheck',function(){
           a.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
         };
 
-        $scope.getModules = function(result){
+        $scope.exportHTML = function(evt){
+          var a = evt.target;
+          a.setAttribute('href', '/export?type=HTML&lang=' + $rootScope.language + '&test_id=' + $scope.job_id);
+        };
+
+		$scope.getModules = function(result){
           var modules = {};
           for( var item in result ){
             if( typeof modules[result[item].module] === 'undefined' ) modules[result[item].module] = 'check';
@@ -220,7 +225,7 @@ dnscheck.directive('domainCheck',function(){
         };
 
         $scope.addDigest = function(){
-          $scope.ds_list.push({algorithm:"",digest:""});
+          $scope.ds_list.push({keytag:"", algorithm:"", digtype: "", digest:""});
         };
 
         $scope.removeNS = function(idx){
@@ -244,25 +249,26 @@ dnscheck.directive('domainCheck',function(){
             data : { id: $scope.job_id, language: $rootScope.language },
             dataType : 'json',
             success: function(data){
-              $scope.$apply($scope.test = { id: data.result.id, creation_time: data.result.creation_time});
-              $scope.$apply($scope.result = data.result.results);
-              $scope.$apply($scope.getModules(data.result.results));
-              $scope.$apply($scope.form = data.result.params);
-              $scope.$apply($scope.ns_list = data.result.params.nameservers);
-              $scope.$apply($scope.ds_list = data.result.params.ds_digest_pairs);
+              $scope.test = { id: data.result.id, creation_time: data.result.creation_time};
+              $scope.result = data.result.results;
+              $scope.getModules(data.result.results);
+              $scope.form = data.result.params;
+              $scope.ns_list = data.result.params.nameservers;
+              $scope.ds_list = data.result.params.ds_info;
               if (data.result.params.nameservers) {
-                  $scope.$apply($scope.contentUrl = '/ang/inactive_domain_check');
+                  $scope.contentUrl = '/ang/inactive_domain_check';
                   if ($rootScope.panes) {
                       $rootScope.panes[1].selected = true
                       $rootScope.panes[0].selected = false
                   }
               } else {
-                  $scope.$apply($scope.contentUrl = '/ang/domain_check');
+                  $scope.contentUrl = '/ang/domain_check';
                   if ($rootScope.panes) {
                       $rootScope.panes[0].selected = true
                       $rootScope.panes[1].selected = false
                   }
               }
+              $scope.$apply();
               $.ajax('/history',{
                 data : { data: JSON.stringify($scope.form) },
                 dataType : 'json',
@@ -311,7 +317,7 @@ dnscheck.directive('domainCheck',function(){
         $scope.domainCheck = function(){
 			if($scope.inactive) { 
 				$scope.form.nameservers = $scope.ns_list;
-				$scope.form.ds_digest_pairs = $scope.ds_list;
+				$scope.form.ds_info = $scope.ds_list;
 			}
 			
 			$.ajax('/check_syntax',{

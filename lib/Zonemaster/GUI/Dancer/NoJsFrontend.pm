@@ -8,7 +8,7 @@ use Plack::Builder;
 use HTML::Entities;
 use Zonemaster::GUI::Dancer::Client;
 
-our $VERSION = '1.0.3';
+our $VERSION = '1.0.5';
 
 my $backend_port = 5000;
 $backend_port = $ENV{ZONEMASTER_BACKEND_PORT} if ($ENV{ZONEMASTER_BACKEND_PORT});
@@ -44,19 +44,21 @@ sub params_backend2template {
     $template_params{nameservers} = \@nameservers if ( @nameservers );
 
     my $ds_id = 0;
-    my @ds_digest_pairs;
-    foreach my $ds ( @{ $params->{ds_digest_pairs} } ) {
+    my @ds_info;
+    foreach my $ds ( @{ $params->{ds_info} } ) {
         $ds_id++;
         push(
-            @ds_digest_pairs,
+            @ds_info,
             {
-                ds_id     => $ds_id,
-                algorithm => encode_entities( $ds->{algorithm} ),
-                digest    => encode_entities( $ds->{digest} )
+                ds_id		=> $ds_id,
+                keytag		=> encode_entities( $ds->{keytag} ),
+                algorithm	=> encode_entities( $ds->{algorithm} ),
+                digtype		=> encode_entities( $ds->{digtype} ),
+                digest		=> encode_entities( $ds->{digest} ),
             }
         );
     }
-    $template_params{ds_digest_pairs} = \@ds_digest_pairs if ( @ds_digest_pairs );
+    $template_params{ds_info} = \@ds_info if ( @ds_info );
 
     return \%template_params;
 }
@@ -82,8 +84,8 @@ sub params_template2backend {
     my $ds_id = 1;
     while ( defined $params->{"algorithm$ds_id"} ) {
         push(
-            @{ $backend_params{ds_digest_pairs} },
-            { algorithm => $params->{"algorithm$ds_id"}, digest => $params->{"digest$ds_id"} }
+            @{ $backend_params{ds_info} },
+            { keytag => $params->{"keytag$ds_id"}, algorithm => $params->{"algorithm$ds_id"}, digtype => $params->{"digtype$ds_id"}, digest => $params->{"digest$ds_id"} }
         );
         $ds_id++;
     }
@@ -141,15 +143,15 @@ any [ 'get', 'post' ] => '/nojs' => sub {
     elsif ( $allparams{'button'} eq 'Add DS' ) {
         my $backend_params = params_template2backend( \%allparams );
         push(
-            @{ $backend_params->{ds_digest_pairs} },
-            { ds_id => scalar( @{ $backend_params->{ds_digest_pairs} } ) + 1, algorithm => '', digest => '' }
+            @{ $backend_params->{ds_info} },
+            { ds_id => scalar( @{ $backend_params->{ds_info} } ) + 1, keytag => '', algorithm => '', digtype => '', digest => '' }
         );
         template 'nojs_main_view', params_backend2template( $backend_params ), { layout => undef };
     }
 
     elsif ( $allparams{'button'} =~ /^Delete DS\s+([\d]+)/ ) {
         my $backend_params = params_template2backend( \%allparams );
-        splice( @{ $backend_params->{ds_digest_pairs} }, $1 - 1, 1 );
+        splice( @{ $backend_params->{ds_info} }, $1 - 1, 1 );
         template 'nojs_main_view', params_backend2template( $backend_params ), { layout => undef };
     }
 
@@ -160,7 +162,7 @@ any [ 'get', 'post' ] => '/nojs' => sub {
         if ( length( $backend_params->{domain} ) < 255 ) {
             my $parent_zone_data = $c->get_data_from_parent_zone( $backend_params->{domain} );
             $backend_params->{nameservers}     = $parent_zone_data->{ns_list} if ( $parent_zone_data->{ns_list} );
-            $backend_params->{ds_digest_pairs} = $parent_zone_data->{ds_list} if ( $parent_zone_data->{ds_list} );
+            $backend_params->{ds_info} = $parent_zone_data->{ds_list} if ( $parent_zone_data->{ds_list} );
             template 'nojs_main_view', params_backend2template( $backend_params ), { layout => undef };
         }
         else {

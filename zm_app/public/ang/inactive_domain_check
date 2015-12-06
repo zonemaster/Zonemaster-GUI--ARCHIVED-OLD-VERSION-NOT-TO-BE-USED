@@ -8,7 +8,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-10 col-sm-7 col-md-6 col-lg-4">
+  <div class="col-xs-10 col-sm-7 col-md-6 col-lg-6">
     <h1>{{'Domain name'|translate}}</h1>
     <input type="text" class="form-control" id="domain_check_name" ng-model="$parent.form.domain" ng-keypress="($event.which === 13)?domainCheck():0">
     <br>
@@ -31,21 +31,38 @@
       </div>
     </div>
     <br>
-<!--    <legend> {{'Digests'|translate}} <button class="pull-right btn btn-link btn-sm" ng-click="addDigest()"><span class="fa fa-plus"></span></button></legend> -->
-	<legend> {{'Digests'|translate}} <button class="pull-right btn btn-link btn-sm"><span class="fa fa-plus"></span></button></legend>
+    <legend> {{'Digests'|translate}} <button class="pull-right btn btn-link btn-sm" ng-click="addDigest()"><span class="fa fa-plus"></span></button></legend>
     <div ng-repeat="(idx,ds) in ds_list" class="row">
-      <div class="col-xs-6">
+      <div class="col-xs-2">
+		<label>{{'Key Tag'|translate}}</label>
+        <input type="text" ng-model="ds.keytag" placeholder="Key tag" class="form-control">  
+      </div>
+      <div class="col-xs-4">
+		<label>{{'Algorithm'|translate}}</label>
         <select ng-model="ds.algorithm" class="form-control">
-          <option value="sha256">SHA-256</option>
-          <option value="sha1">SHA-1</option>
+          <option value="3">DSA/SHA1</option>
+          <option value="5">RSA/SHA1</option>
+          <option value="6">DSA-NSEC3-SHA1</option>
+          <option value="7">RSASHA1-NSEC3-SHA1</option>
+          <option value="8">RSA/SHA-256</option>
+          <option value="9">RSA/SHA-512</option>
         </select>  
       </div>
-      <div class="col-xs-5">
+      <div class="col-xs-2">
+		<label>{{'Digest type'|translate}}</label>
+        <select ng-model="ds.digtype" class="form-control">
+          <option value="1">SHA-1</option>
+          <option value="2">SHA-256</option>
+        </select>  
+      </div>
+      <div class="col-xs-3">
+		<label >{{'Digest'|translate}}</label>
         <input type="text" ng-model="ds.digest" placeholder="Digest" class="form-control">  
       </div>
       <div class="col-xs-1">
         <button class="pull-right btn btn-link btn-sm" ng-click="removeDigest(idx)"><span class="fa fa-minus"></span></button>
       </div>
+      <div class="col-xs-12" style="height:10px;"></div>
     </div>
     <br>
       <button class="btn btn-default" ng-click="fetchFromParent()">{{'Fetch data from parent zone'|translate}}</button>
@@ -55,9 +72,9 @@
       <div ng-show="$parent.form.advanced" class="advanced">
         <label class="checkbox"><input type="checkbox" ng-model="$parent.form.ipv4" ng-disabled="!$parent.form.ipv6"> IPv4</label>
         <label class="checkbox"><input type="checkbox" ng-model="$parent.form.ipv6" ng-disabled="!$parent.form.ipv4"> IPv6</label>
-        <select ng-model="$parent.form.profile" class="form-control" disabled>
+        <select ng-model="$parent.form.profile" class="form-control">
           <option value="default_profile">Default</option>
-          <option value="test_profile_1">Test profile 1</option>
+          <option value="test_profile_1">IANA profile</option>
           <option value="test_profile_2">Test profile 2</option>
         </select>
       </div>
@@ -102,11 +119,12 @@
         <tab tab-title="{{'Export'|translate}}" tab-id="export">
           <br>
           <a download="report.txt" class="btn btn-primary" ng-click="exportFile($event)">{{'Download'|translate}}</a>
+          <a target="_self" class="btn btn-primary" ng-click="exportHTML($event)">{{'Download HTML'|translate}}</a>
         </tab>
         <tab tab-title="{{'History'|translate}}" tab-id="history">
         <br>
           <div class="" ng-repeat="item in history">
-            <span class="history-{{item.overall_result}}">&#x25C9;</span>&nbsp;<a href="/test/{{item.id}}">{{item.creation_time | asDate | date:"yyyy-MM-ddTHH:mmZ"}}</a>
+            <span class="history-{{item.overall_result}}">&#x25C9;</span>&nbsp;<a target="_self" href="/test/{{item.id}}">{{item.creation_time | asDate | date:"yyyy-MM-ddTHH:mmZ"}}</a>
           </div>
         </tab>
       </navigation>

@@ -59,13 +59,21 @@
 			</button>
 			Digests
 			<hr>
-			<% FOREACH ds IN ds_digest_pairs %>
+			<% FOREACH ds IN ds_info %>
 				<button type="submit" name="button" value="Delete DS <% ds.ds_id %>" />
 				-
 				</button>
+				<label for="keytag<% ds.ds_id %>">
+					Key tag
+					<input id="keytag<% ds.ds_id %>" name="keytag<% ds.ds_id %>" type="text" value="<% ds.keytag %>">
+				</label>
 				<label for="algorithm<% ds.ds_id %>">
 					Algorithm
 					<input id="algorithm<% ds.ds_id %>" name="algorithm<% ds.ds_id %>" type="text" value="<% ds.algorithm %>">
+				</label>
+				<label for="digtype<% ds.ds_id %>">
+					Digest type
+					<input id="digtype<% ds.ds_id %>" name="digtype<% ds.ds_id %>" type="text" value="<% ds.digtype %>">
 				</label>
 				<label for="digest<% ds.ds_id %>">
 					Digest
@@ -123,9 +131,9 @@
 			<% END %>
 		</p>
 		<% IF test_id %>
-			<a href="<% request.uri_base %>/test/<% test_id %>">Javascript Interface</a>
+			<a href="/test/<% test_id %>">Javascript Interface</a>
 		<% ELSE %>
-			<a href="<% request.uri_base %>">Javascript Interface</a>
+			<a href="/">Javascript Interface</a>
 		<% END %>
 	</body>
 </html>
