@@ -1,5 +1,20 @@
 # Zonemaster Web GUI Installation
 
+The documentation covers the following operating systems:
+
+ * [1] <a href="#Debian">Ubuntu 14.04 (LTS)</a>
+ * [2] <a href="#Debian">Debian Wheezy (version 7)</a>
+ * [3] <a href="#FreeBSD">FreeBSD 10</a>
+
+## Pre-Requisites
+
+   * Zonemaster-engine should be installed before. Follow the instructions
+[here](https://github.com/dotse/zonemaster-engine/blob/master/docs/installation.md)
+   * Zonemaster-backend should be installed before. Follow the instructions
+[here](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md)
+
+## Preambule
+
 Since it is a web application, the Zonemaster Web GUI is a bit more complicated to install than, for example, the test engine. The exact details also depend on the operating system and environment in which it is installed, so it's not really possible to provide general point-by-point instructions.
 
 Basically, the GUI has two major parts. One part is the Perl modules that hold most of the application logic, and the other part is the HTML template files, CSS files, Javascript files and so on that the application logic needs. The Perl module part can be installed as any other Perl module, and is not at all problematic. For the second part, there is no widely accepted place or way to install it, and different operating systems want it in different places. For this reason, we have put all that stuff in a subdirectory of its own in the source code, so you can easily copy it to wherever suits your environment best.
@@ -16,13 +31,13 @@ So, in essence, the installation consists of the following steps:
 
 5) Start the server. How to do this can also vary a lot, depending on what else is running on the same server, how much traffic you're expecting to get and such. In any case, you need a server that understands the `PSGI` interface, and it should be pointed at the file `zm_app/bin/app.pl` in the subdirectory you just copied things to (leaving it in the source code also works, of course).
 
-## Example installation for Ubuntu Server 14.04LTS
+## <a name="Debian"></a> Example installation for Ubuntu Server 14.04LTS
 
 1) Install the backend according to its instructions.
 
 2) Install added prerequisite packages:
 
-    sudo apt-get install libdancer-perl libtext-markdown-perl
+    sudo apt-get install libdancer-perl libtext-markdown-perl libtemplate-perl
 
 3) Get the source code.
 
@@ -50,7 +65,7 @@ So, in essence, the installation consists of the following steps:
 
 The Doc directory in the source code also has an example Upstart file for the Web GUI starman server.
 
-## Example installation for FreeBSD 10 & 10.1
+## <a name="FreeBSD"></a> Example installation for FreeBSD 10 & 10.1
 
 1) Become root
 
