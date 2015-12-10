@@ -43,6 +43,7 @@ my $backend_port = 5000;
 $backend_port = $ENV{ZONEMASTER_BACKEND_PORT} if ($ENV{ZONEMASTER_BACKEND_PORT});
 my $url = "http://localhost:$backend_port";
 my $client = Zonemaster::GUI::Dancer::Client->new( { url => $url } );
+set logger => 'console';
 
 get '/' => sub {
     template 'index';
