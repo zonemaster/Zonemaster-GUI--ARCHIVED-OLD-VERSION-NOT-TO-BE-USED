@@ -5,6 +5,7 @@ The documentation covers the following operating systems:
  * [1] <a href="#Debian">Ubuntu 14.04 (LTS)</a>
  * [2] <a href="#Debian">Debian Wheezy (version 7)</a>
  * [3] <a href="#FreeBSD">FreeBSD 10</a>
+ * [4] <a href="#CentOS">CentOS 7.1</a>
 
 ## Pre-Requisites
 
@@ -33,11 +34,45 @@ So, in essence, the installation consists of the following steps:
 
 ## <a name="Debian"></a> Example installation for Ubuntu Server 14.04LTS
 
-1) Install the backend according to its instructions.
+1) Install added prerequisite packages:
 
-2) Install added prerequisite packages:
+    sudo apt-get install libdancer-perl libtext-markdown-perl libtemplate-perl libjson-any-perl
 
-    sudo apt-get install libdancer-perl libtext-markdown-perl libtemplate-perl
+2) Get the source code.
+
+    git clone https://github.com/dotse/zonemaster-gui.git
+
+3) Change to the source code directory.
+
+    cd zonemaster-gui
+
+4) Install the Perl modules.
+
+    perl Makefile.PL
+    make
+    make test
+    sudo make install
+
+5) Create a directory for the webapp parts, and copy them there.
+
+    sudo mkdir -p /usr/share/doc/zonemaster
+    sudo cp -a zm_app /usr/share/doc/zonemaster
+
+6) Start the server:
+
+    sudo starman --listen=:80 /usr/share/doc/zonemaster/zm_app/bin/app.pl
+
+The Doc directory in the source code also has an example Upstart file for the Web GUI starman server.
+
+## <a name="FreeBSD"></a> Example installation for FreeBSD 10 & 10.1
+
+1) Become root
+
+    su -
+
+2) Install additional prerequisite packages.
+
+    pkg install p5-Dancer p5-Text-Markdown p5-Template-Toolkit
 
 3) Get the source code.
 
@@ -52,51 +87,45 @@ So, in essence, the installation consists of the following steps:
     perl Makefile.PL
     make
     make test
-    sudo make install
+    make install
 
 6) Create a directory for the webapp parts, and copy them there.
 
-    sudo mkdir -p /usr/share/doc/zonemaster
-    sudo cp -a zm_app /usr/share/doc/zonemaster
+    mkdir -p /usr/local/share/zonemaster
+    cp -a zm_app /usr/local/share/zonemaster
 
 7) Start the server:
 
-    sudo starman --listen=:80 /usr/share/doc/zonemaster/zm_app/bin/app.pl
+    starman --listen=:80 --daemonize /usr/local/share/zonemaster/zm_app/bin/app.pl
 
-The Doc directory in the source code also has an example Upstart file for the Web GUI starman server.
 
-## <a name="FreeBSD"></a> Example installation for FreeBSD 10 & 10.1
+## <a name="CentOS"></a> Example installation for CentOS 7.1
 
-1) Become root
+1) Install additional prerequisite packages.
 
-   su -
+    sudo cpan -i Dancer Text::Markdown Template JSON
 
-2) Install the backend according to its instructions.
-
-3) Install additional prerequisite packages.
-
-    pkg install p5-Dancer p5-Text-Markdown p5-Template-Toolkit
-
-4) Get the source code.
+2) Get the source code.
 
     git clone https://github.com/dotse/zonemaster-gui.git
 
-5) Change to the source code directory.
+3) Change to the source code directory.
 
     cd zonemaster-gui
 
-6) Install the Perl modules.
+4) Install the Perl modules.
 
     perl Makefile.PL
     make
     make test
     make install
 
-7) Create a directory for the webapp parts, and copy them there.
+5) Create a directory for the webapp parts, and copy them there.
 
     mkdir -p /usr/local/share/zonemaster
     cp -a zm_app /usr/local/share/zonemaster
 
-8) Start the server:
+6) Start the server:
 
     starman --listen=:80 --daemonize /usr/local/share/zonemaster/zm_app/bin/app.pl
+
