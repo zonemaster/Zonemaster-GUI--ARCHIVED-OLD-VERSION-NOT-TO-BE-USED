@@ -1,6 +1,7 @@
 FROM opensuse:13.2
 MAINTAINER Michal TOMA <toma@nic.fr>
 
+# Test push
 # Install basic dependencies
 RUN pwd
 RUN zypper --non-interactive in make gcc git libopenssl-devel timezone postgresql-server postgresql-devel postgresql perl-DBD-Pg perl-App-cpanminus perl-aliased perl-Module-Install
