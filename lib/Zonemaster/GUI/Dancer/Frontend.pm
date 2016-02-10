@@ -81,7 +81,7 @@ get '/version' => sub {
 		$version = $ENV{ZONEMASTER_ENVIRONMENT}." [Engine:".$data->{zonemaster_engine} . " / Frontend:$VERSION / Backend:".$data->{zonemaster_backend} . " / IP address: $ip]";
 	}
 	else {
-		$version = "Zonemaster Test Engine Verison:".$data->{zonemaster_engine} . ", IP address: $ip";
+		$version = "Zonemaster Test Engine Version:".$data->{zonemaster_engine} . ", IP address: $ip";
 	}
 	
     return to_json( { result => $version } );
