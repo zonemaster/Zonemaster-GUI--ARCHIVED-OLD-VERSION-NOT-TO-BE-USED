@@ -13,23 +13,23 @@ The documentation covers the following operating systems:
 
 Install the docker package on your OS
 
-	`follow the installation instructions for your OS -> https://docs.docker.com/engine/installation/linux/`
+Follow the installation instructions for your OS -> https://docs.docker.com/engine/installation/linux/
 	
 Pull the docker image containing the complete Zonemaster distribution (GUI + Backend + Engine)
 
-	`docker pull afniclabs/zonemaster-gui`
+	docker pull afniclabs/zonemaster-gui
 
 Start the container in the background
 
-	`docker run -t -p 50080:50080 afniclabs/zonemaster-gui`
+	docker run -t -p 50080:50080 afniclabs/zonemaster-gui
 	
 Use the Zonemaster GUI by pointing your browser at
 
-	`http://localhost:50080/`
+	http://localhost:50080/
 	
 Use the Zonemaster from command line
 
-	`docker run -t -i afniclabs/zonemaster-gui bash`
+	docker run -t -i afniclabs/zonemaster-gui bash
 	
 ## Pre-Requisites
 
