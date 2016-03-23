@@ -27,7 +27,7 @@ Use the Zonemaster GUI by pointing your browser at
 
 	http://localhost:50080/
 	
-Use the Zonemaster from command line
+Use the Zonemaster engine from the command line
 
 	docker run -t -i afniclabs/zonemaster-gui bash
 	
