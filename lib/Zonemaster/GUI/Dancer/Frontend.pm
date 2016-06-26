@@ -5,7 +5,7 @@ use warnings;
 
 use Encode qw[decode_utf8];
 
-our $VERSION = '1.0.5';
+our $VERSION = '1.0.6';
 
 ###
 ### Fetch the FAQ source documents
@@ -43,6 +43,9 @@ my $backend_port = 5000;
 $backend_port = $ENV{ZONEMASTER_BACKEND_PORT} if ($ENV{ZONEMASTER_BACKEND_PORT});
 my $url = "http://localhost:$backend_port";
 my $client = Zonemaster::GUI::Dancer::Client->new( { url => $url } );
+set logger => 'console';
+
+set logger => 'console';
 
 get '/' => sub {
     template 'index';
@@ -78,7 +81,7 @@ get '/version' => sub {
 		$version = $ENV{ZONEMASTER_ENVIRONMENT}." [Engine:".$data->{zonemaster_engine} . " / Frontend:$VERSION / Backend:".$data->{zonemaster_backend} . " / IP address: $ip]";
 	}
 	else {
-		$version = "Zonemaster Test Engine Verison:".$data->{zonemaster_engine} . ", IP address: $ip";
+		$version = "Zonemaster Test Engine Version:".$data->{zonemaster_engine} . ", IP address: $ip";
 	}
 	
     return to_json( { result => $version } );

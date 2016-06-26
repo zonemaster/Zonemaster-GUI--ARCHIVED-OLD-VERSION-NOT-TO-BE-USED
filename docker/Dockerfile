@@ -21,7 +21,7 @@ RUN cd /zonemaster-backend && cpanm --installdeps --notest --quiet .
 
 # Clone GUI and install dependencies
 RUN git clone https://github.com/dotse/zonemaster-gui.git
-RUN cd /zonemaster-gui && git checkout tags/v1.0.3
+#RUN cd /zonemaster-gui && git checkout tags/v1.0.3
 RUN cd /zonemaster-gui && cpanm --installdeps --notest --quiet .
 
 # Install the CLI interface
