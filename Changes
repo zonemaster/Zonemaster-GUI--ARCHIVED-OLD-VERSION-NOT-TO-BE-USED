@@ -1,4 +1,6 @@
 Revision history for Zonemaster GUI.
+v1.0.7 2016-10-11
+	Fixes #123 - Add a Docker image with a packaged and ready to use GUI+Backend+Engine
 v1.0.6 2015-12-17
 	Fixes #146 - Redirect Dancer log messages to the console
 	Fixes #141 - Error in the engine while testing "oxynux.fr" 
