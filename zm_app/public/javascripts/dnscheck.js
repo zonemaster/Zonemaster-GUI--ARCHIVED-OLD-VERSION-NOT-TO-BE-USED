@@ -41,7 +41,7 @@ dnscheck.filter("asDate", function () {
 	return function (input) {
 		if (typeof input ==='undefined') return new Date(); 
 		var d = input.split(/[^0-9]/);
-		var date = new Date(d[0], d[1]-1, d[2], d[3], d[4], d[5]);
+		var date = new Date(Date.UTC(d[0], d[1]-1, d[2], d[3], d[4], d[5]));
 		return date;
 	}
 });
