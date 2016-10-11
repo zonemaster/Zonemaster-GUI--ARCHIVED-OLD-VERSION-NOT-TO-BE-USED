@@ -1,9 +1,7 @@
 .gitignore
 Changes
-docs/installation-instructions.md
 docs/starman-zmgui.conf.example
 docs/TranslationGuide.md
-docs/zonemaster-frontend-installation-instructions.md
 FunctionalTests/GR01-test-swedish-language.js
 FunctionalTests/GR02-test-french-language.js
 FunctionalTests/GR03-english-language-support.js
