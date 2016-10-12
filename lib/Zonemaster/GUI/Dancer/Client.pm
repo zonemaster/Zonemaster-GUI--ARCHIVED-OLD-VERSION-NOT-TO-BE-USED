@@ -1,5 +1,5 @@
 package Zonemaster::GUI::Dancer::Client;
-our $VERSION = '1.0.6';
+our $VERSION = '1.0.7';
 
 use strict;
 use warnings;
