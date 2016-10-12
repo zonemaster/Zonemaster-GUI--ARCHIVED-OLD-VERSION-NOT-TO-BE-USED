@@ -5,7 +5,7 @@ use warnings;
 
 use Encode qw[decode_utf8];
 
-our $VERSION = '1.0.6';
+our $VERSION = '1.0.7';
 
 ###
 ### Fetch the FAQ source documents
