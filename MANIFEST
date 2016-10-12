@@ -1,5 +1,12 @@
 .gitignore
+.travis.yml
 Changes
+docker/Dockerfile
+docker/zonemaster_startup.sh
+docs/FAQ/gui-faq-en.md
+docs/FAQ/gui-faq-fr.md
+docs/FAQ/gui-faq-sv.md
+docs/installation.md
 docs/starman-zmgui.conf.example
 docs/TranslationGuide.md
 FunctionalTests/GR01-test-swedish-language.js
@@ -18,17 +25,19 @@ FunctionalTests/GR27-logo-verification.js
 FunctionalTests/GR28-test-title.js
 FunctionalTests/Readme.md
 lib/Zonemaster/GUI/Dancer/Client.pm
+lib/Zonemaster/GUI/Dancer/Export.pm
 lib/Zonemaster/GUI/Dancer/Frontend.pm
 lib/Zonemaster/GUI/Dancer/NoJsFrontend.pm
 LICENSE
 Makefile.PL
 MANIFEST			This list of files
 MANIFEST.SKIP
-MYMETA.json
-MYMETA.yml
 README.md
 t/001_base.t
 t/002_index_route.t
+t/run_a_predelegated_zonemaster_test.js
+t/run_a_simple_zonemaster_test.js
+t/wait_for_version_string.js
 zm_app/bin/app.pl
 zm_app/config.yml
 zm_app/environments/deployment.yml
@@ -65,6 +74,7 @@ zm_app/public/components/angular/bower.json
 zm_app/public/components/angular/README.md
 zm_app/public/css/bootstrap.min.css
 zm_app/public/css/error.css
+zm_app/public/css/export_style.css
 zm_app/public/css/nojs_style.css
 zm_app/public/css/style.css
 zm_app/public/dispatch.cgi
@@ -74,6 +84,8 @@ zm_app/public/fonts/glyphicons-halflings-regular.svg
 zm_app/public/fonts/glyphicons-halflings-regular.ttf
 zm_app/public/fonts/glyphicons-halflings-regular.woff
 zm_app/public/images/dns.svg
+zm_app/public/images/email.svg
+zm_app/public/images/github.svg
 zm_app/public/images/loading.gif
 zm_app/public/images/zonemaster_logo.svg
 zm_app/public/javascripts/bootstrap.min.js
@@ -85,6 +97,7 @@ zm_app/public/lang/en.json
 zm_app/public/lang/fr.json
 zm_app/public/lang/ru.json
 zm_app/public/lang/sv.json
+zm_app/views/export.tt
 zm_app/views/index.tt
 zm_app/views/nojs_error_page.tt
 zm_app/views/nojs_main_view.tt
