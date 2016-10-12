@@ -1,5 +1,6 @@
 Revision history for Zonemaster GUI.
 v1.0.7 2016-10-11
+	Fixes #160 - "perl Makefile.PL" returns warnings on missing files
 	Fixes #157 - Date of test must be created from an UTC date
 	Fixes #151 - Fix type s/Test Engine Verison/Test Engine Version/
 	Fixes #123 - Add a Docker image with a packaged and ready to use GUI+Backend+Engine
