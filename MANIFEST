@@ -24,6 +24,7 @@ FunctionalTests/GR22-link-content.js
 FunctionalTests/GR27-logo-verification.js
 FunctionalTests/GR28-test-title.js
 FunctionalTests/Readme.md
+lib/Zonemaster/GUI.pm
 lib/Zonemaster/GUI/Dancer/Client.pm
 lib/Zonemaster/GUI/Dancer/Export.pm
 lib/Zonemaster/GUI/Dancer/Frontend.pm
