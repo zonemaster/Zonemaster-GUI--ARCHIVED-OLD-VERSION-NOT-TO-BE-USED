@@ -4,7 +4,6 @@ use ExtUtils::MakeMaker;
 
 WriteMakefile(
     NAME                => 'Zonemaster_Dancer',
-    DISTVNAME		=> 'Zonemaster_Dancer',
     AUTHOR              => q{Michal TOMA <toma@nic.fr>},
     VERSION_FROM        => 'lib/Zonemaster/GUI.pm',
     ABSTRACT            => 'The Zonemaster project Web Frontend',
