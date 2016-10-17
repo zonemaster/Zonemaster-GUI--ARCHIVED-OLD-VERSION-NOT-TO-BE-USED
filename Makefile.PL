@@ -3,7 +3,7 @@ use warnings;
 use ExtUtils::MakeMaker;
 
 WriteMakefile(
-    NAME                => 'Zonemaster_Dancer',
+    NAME                => 'Zonemaster::GUI',
     AUTHOR              => q{Michal TOMA <toma@nic.fr>},
     VERSION_FROM        => 'lib/Zonemaster/GUI.pm',
     ABSTRACT            => 'The Zonemaster project Web Frontend',
