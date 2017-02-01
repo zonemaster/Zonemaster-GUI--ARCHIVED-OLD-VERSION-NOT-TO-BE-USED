@@ -25,7 +25,7 @@ Zonemaster är ett program designat för att hjälpa människor att kontrollera,
 #### 2. Vem har utvecklat Zonemaster? <a name="q2"></a>
 
 Zonemaster är ett samarbetsprojekt mellan IIS (Registry för TLD:erna IIS och .NU) och AFNIC
-(Registry för TLD:n .FR och de mindre TLD:er som tillhör Frankfrike).
+(Registry för TLD:n .FR och de mindre TLD:er som tillhör Frankrike).
 
 #### 3. Hur kan Zonemaster hjälpa mig? <a name="q3"></a>
 
