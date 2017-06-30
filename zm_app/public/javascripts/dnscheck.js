@@ -27,12 +27,14 @@ dnscheck.factory('customLoader', function ($http, $q, $timeout) {
 dnscheck.config(function($translateProvider) {
 	$translateProvider.useLoader('customLoader');
 	var lang;
-		if (navigator.userLanguage) // Explorer
+		if (navigator.userLanguage) { // Explorer
 			lang = navigator.userLanguage.substring(0, 2);
-		else if (navigator.language) // FF
-			lang = navigator.languages ? navigator.languages[0].substring(0, 2) : (navigator.language.substring(0, 2) || navigator.userLanguage.substring(0, 2));
-		else
+		} else if (navigator.language) { // FF
+			var browserLang = navigator.languages ? navigator.languages[0].substring(0, 2) : (navigator.language.substring(0, 2) || navigator.userLanguage.substring(0, 2));
+			lang = browserLang.match(/(en|fr|sv)/i) ? browserLang : "en";
+		} else {
 			lang = "en";
+		}
 		
 	$translateProvider.preferredLanguage(lang);
 });
