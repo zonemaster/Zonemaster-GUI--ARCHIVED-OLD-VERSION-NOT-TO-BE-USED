@@ -38,7 +38,7 @@ Use the Zonemaster engine from the command line
    * Zonemaster-backend should be installed before. Follow the instructions
 [here](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md)
 
-## Preambule
+## Preamble
 
 Since it is a web application, the Zonemaster Web GUI is a bit more complicated to install than, for example, the test engine. The exact details also depend on the operating system and environment in which it is installed, so it's not really possible to provide general point-by-point instructions.
 
