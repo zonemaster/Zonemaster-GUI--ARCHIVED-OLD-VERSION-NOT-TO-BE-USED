@@ -39,64 +39,44 @@ This instruction covers the following operating systems:
 
 ### 1. CentOS
 
-1) Install additional prerequisite packages.
+Install dependencies available from binary packages:
 
-    sudo cpan -i Dancer Text::Markdown Template JSON
+```sh
+sudo cpan -i Dancer Text::Markdown Template JSON
+```
 
-2) Get the source code.
+Install Zonemaster::GUI:
 
-    git clone https://github.com/dotse/zonemaster-gui.git
+```sh
+cpan -i Zonemaster::GUI
+```
 
-3) Change to the source code directory.
+Start the web server:
 
-    cd zonemaster-gui
-
-4) Install the Perl modules.
-
-    perl Makefile.PL
-    make
-    make test
-    make install
-
-5) Create a directory for the webapp parts, and copy them there.
-
-    mkdir -p /usr/local/share/zonemaster
-    cp -a zm_app /usr/local/share/zonemaster
-
-6) Start the server:
-
-    starman --listen=:80 --daemonize /usr/local/share/zonemaster/zm_app/bin/app.pl
+```sh
+starman --listen=:80 --daemonize `perl -MFile::ShareDir=dist_file -e 'print dist_file("Zonemaster-GUI", "bin/app.pl")'`
+```
 
 
 ### 2. Debian
 
-1) Install added prerequisite packages:
+Install dependencies available from binary packages:
 
-    sudo apt-get install libdancer-perl libtext-markdown-perl libtemplate-perl libjson-any-perl
+```sh
+sudo apt-get install libdancer-perl libtext-markdown-perl libtemplate-perl libjson-any-perl
+```
 
-2) Get the source code.
+Install Zonemaster::GUI:
 
-    git clone https://github.com/dotse/zonemaster-gui.git
+```sh
+cpan -i Zonemaster::GUI
+```
 
-3) Change to the source code directory.
+Start the web server:
 
-    cd zonemaster-gui
-
-4) Install the Perl modules.
-
-    perl Makefile.PL
-    make
-    make test
-    sudo make install
-
-5) Create a directory for the webapp parts, and copy them there.
-
-    sudo mkdir -p /usr/share/doc/zonemaster
-    sudo cp -a zm_app /usr/share/doc/zonemaster
-
-6) Start the server:
-
-    sudo starman --listen=:80 /usr/share/doc/zonemaster/zm_app/bin/app.pl
+```sh
+starman --listen=:80 --daemonize `perl -MFile::ShareDir=dist_file -e 'print dist_file("Zonemaster-GUI", "bin/app.pl")'`
+```
 
 The Doc directory in the source code also has an example Upstart file for the Web GUI starman server.
 
