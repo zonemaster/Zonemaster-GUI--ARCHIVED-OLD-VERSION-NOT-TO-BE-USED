@@ -14,12 +14,12 @@ Backend installation](https://github.com/dotse/zonemaster-backend/blob/master/do
 
 ### Installation
 
-Follow the detailed [installation instructions](docs/installation.md).
+Follow the detailed [installation instructions](docs/Installation.md).
 
 ### Configuration 
 
 Text for configuring the backend are found in the [installation
-instructions](docs/installation.md).
+instructions](docs/Installation.md).
 
 ### Documentation
 

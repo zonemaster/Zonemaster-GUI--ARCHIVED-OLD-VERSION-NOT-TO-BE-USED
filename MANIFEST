@@ -6,7 +6,7 @@ docker/zonemaster_startup.sh
 docs/FAQ/gui-faq-en.md
 docs/FAQ/gui-faq-fr.md
 docs/FAQ/gui-faq-sv.md
-docs/installation.md
+docs/Installation.md
 docs/starman-zmgui.conf.example
 docs/TranslationGuide.md
 FunctionalTests/GR01-test-swedish-language.js
