@@ -129,7 +129,7 @@ Use the Zonemaster engine from the command line
 Become root:
 
 ```sh
-su -
+su -l
 ```
 
 Install dependencies available from binary packages:
