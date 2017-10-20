@@ -48,13 +48,13 @@ sudo cpan -i Dancer Text::Markdown Template JSON
 Install Zonemaster::GUI:
 
 ```sh
-cpan -i Zonemaster::GUI
+sudo cpan -i Zonemaster::GUI
 ```
 
 Start the web server:
 
 ```sh
-starman --listen=:80 --daemonize `perl -MFile::ShareDir=dist_file -e 'print dist_file("Zonemaster-GUI", "bin/app.pl")'`
+sudo starman --listen=:80 --daemonize `perl -MFile::ShareDir=dist_file -e 'print dist_file("Zonemaster-GUI", "bin/app.pl")'`
 ```
 
 
@@ -69,13 +69,13 @@ sudo apt-get install libdancer-perl libtext-markdown-perl libtemplate-perl libjs
 Install Zonemaster::GUI:
 
 ```sh
-cpan -i Zonemaster::GUI
+sudo cpan -i Zonemaster::GUI
 ```
 
 Start the web server:
 
 ```sh
-starman --listen=:80 --daemonize `perl -MFile::ShareDir=dist_file -e 'print dist_file("Zonemaster-GUI", "bin/app.pl")'`
+sudo starman --listen=:80 --daemonize `perl -MFile::ShareDir=dist_file -e 'print dist_file("Zonemaster-GUI", "bin/app.pl")'`
 ```
 
 The Doc directory in the source code also has an example Upstart file for the Web GUI starman server.
