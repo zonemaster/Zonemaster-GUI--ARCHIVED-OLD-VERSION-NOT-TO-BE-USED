@@ -3,7 +3,7 @@ use warnings;
 use inc::Module::Install;
 
 name 'Zonemaster-GUI';
-abstract 'The Zonemaster project Web Frontend';
+abstract 'Web frontend for Zonemaster';
 author 'Michal TOMA <toma@nic.fr>';
 license 'perl';
 version_from 'lib/Zonemaster/GUI.pm';
