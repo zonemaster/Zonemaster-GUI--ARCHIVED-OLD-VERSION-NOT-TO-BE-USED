@@ -144,17 +144,10 @@ Install Zonemaster::GUI:
 cpan -i Zonemaster::GUI
 ```
 
-Create a directory for the webapp parts, and copy them there:
-
-```sh
-mkdir -p /usr/local/share/zonemaster
-cp -a zm_app /usr/local/share/zonemaster
-```
-
 Start the web server:
 
 ```sh
-starman --listen=:80 --daemonize /usr/local/share/zonemaster/zm_app/bin/app.pl
+starman --listen=:80 --daemonize `perl -MFile::ShareDir=dist_file -e 'print dist_file("Zonemaster-GUI", "bin/app.pl")'`
 ```
 
 

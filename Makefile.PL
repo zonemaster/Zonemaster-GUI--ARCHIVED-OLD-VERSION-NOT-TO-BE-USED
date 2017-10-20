@@ -27,4 +27,6 @@ makemaker_args(
     clean => { FILES    => 'Zonemaster_Dancer-*' },
 );
 
+install_share 'zm_app';
+
 WriteAll;
