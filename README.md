@@ -23,6 +23,10 @@ instructions](docs/Installation.md).
 
 ### Documentation
 
+Basically, the GUI has two major parts. One part is the Perl modules that hold
+most of the application logic, and the other part is the HTML template files,
+CSS files, Javascript files and so on that the application logic needs.
+
 Other than the installation file, the [docs directory](docs/), contains how to
 configure the starman and a translation guide for the GUI
 
