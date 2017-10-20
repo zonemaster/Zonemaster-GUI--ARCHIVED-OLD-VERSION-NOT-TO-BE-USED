@@ -128,35 +128,34 @@ Use the Zonemaster engine from the command line
 
 Become root:
 
-    su -
+```sh
+su -
+```
 
-2) Install additional prerequisite packages.
+Install dependencies available from binary packages:
 
-    pkg install p5-Dancer p5-Text-Markdown p5-Template-Toolkit
+```sh
+pkg install p5-Dancer p5-Text-Markdown p5-Template-Toolkit
+```
 
-3) Get the source code.
+Install Zonemaster::GUI:
 
-    git clone https://github.com/dotse/zonemaster-gui.git
+```sh
+cpan -i Zonemaster::GUI
+```
 
-4) Change to the source code directory.
+Create a directory for the webapp parts, and copy them there:
 
-    cd zonemaster-gui
+```sh
+mkdir -p /usr/local/share/zonemaster
+cp -a zm_app /usr/local/share/zonemaster
+```
 
-5) Install the Perl modules.
+Start the web server:
 
-    perl Makefile.PL
-    make
-    make test
-    make install
-
-6) Create a directory for the webapp parts, and copy them there.
-
-    mkdir -p /usr/local/share/zonemaster
-    cp -a zm_app /usr/local/share/zonemaster
-
-7) Start the server:
-
-    starman --listen=:80 --daemonize /usr/local/share/zonemaster/zm_app/bin/app.pl
+```sh
+starman --listen=:80 --daemonize /usr/local/share/zonemaster/zm_app/bin/app.pl
+```
 
 
 ### 5. Ubuntu
