@@ -54,7 +54,7 @@ sudo cpan -i Zonemaster::GUI
 Start the web server:
 
 ```sh
-sudo starman --listen=:80 --daemonize `perl -MFile::ShareDir=dist_file -e 'print dist_file("Zonemaster-GUI", "bin/app.pl")'`
+sudo /usr/local/bin/starman --listen=:80 --daemonize `perl -MFile::ShareDir=dist_file -e 'print dist_file("Zonemaster-GUI", "bin/app.pl")'`
 ```
 
 
