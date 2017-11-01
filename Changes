@@ -1,4 +1,17 @@
-Revision history for Zonemaster GUI.
+Release history for Zonemaster Component Zonemaster-GUI 
+(Perl module Zonemaster::GUI).
+
+v1.0.8 2017-11-02 Public release
+- Update licensing (#196)
+- Update Installation.md (#195)
+- Update links to renamed installation instructions (and a few 301-redirecting 
+  urls). (#194)
+- Multiple updates in installation documents and installation (#193)
+- Fix Commonmark rendering on Github. Replace NBSP with SPACE.
+- Correct the algorithm number of RSA/SHA-512 from 9 to 10. Add algorithms 12, 13 
+  and 14 to match what the engine supports, and add types 3 and 4 for digest 
+  types. (#182)
+
 v1.0.7 2016-10-11
 	Fixes #160 - "perl Makefile.PL" returns warnings on missing files
 	Fixes #157 - Date of test must be created from an UTC date
