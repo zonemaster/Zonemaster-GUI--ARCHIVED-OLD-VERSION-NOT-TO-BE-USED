@@ -1,7 +1,8 @@
-Release history for Zonemaster Component Zonemaster-GUI 
-(Perl module Zonemaster::GUI).
+Release history for Zonemaster component Zonemaster-GUI 
 
 v1.0.8 2017-11-02 Public release
+
+Fixed:
 - Update licensing (#196)
 - Update Installation.md (#195)
 - Update links to renamed installation instructions (and a few 301-redirecting 
