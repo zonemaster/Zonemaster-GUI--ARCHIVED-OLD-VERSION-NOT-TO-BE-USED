@@ -17,7 +17,7 @@ Zonemaster
 
 Zonemaster
 ----------
-#### 1. What is Zonemaster? <a name="q1"></a>
+#### 1. What is Zonemaster? <a name="q1"></a>
 Zonemaster is a program that was designed to help people check, measure and
 hopefully also understand the workings of the DNS (Domain Name System). 
 It consists of three basic modules: 
@@ -32,7 +32,7 @@ the information about the specified domain (zonemaster.net). The different sanit
 conducted by the zonemaster tool is documented in the [Test Requirements
 document](https://github.com/dotse/zonemaster/blob/master/docs/requirements/TestRequirements.md)
 
-#### 2. Who is behind Zonemaster? <a name="q2"></a>
+#### 2. Who is behind Zonemaster? <a name="q2"></a>
 Zonemaster is a joint project between IIS (registry operator of .se and .nu TLD) and Afnic 
 (registry operator of .fr TLD and those of the overseas territories of France). 
 

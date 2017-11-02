@@ -21,7 +21,7 @@ Add a `<script>` to your `index.html`:
 ## Documentation
 
 Documentation is available on the
-[AngularJS docs site](http://docs.angularjs.org/).
+[AngularJS docs site](https://docs.angularjs.org/api).
 
 ## License
 

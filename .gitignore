@@ -19,3 +19,4 @@ Zonemaster-*.tar.gz
 .orig
 .*~
 .log
+inc/
