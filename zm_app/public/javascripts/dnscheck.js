@@ -31,7 +31,7 @@ dnscheck.config(function($translateProvider) {
 			lang = navigator.userLanguage.substring(0, 2);
 		} else if (navigator.language) { // FF
 			var browserLang = navigator.languages ? navigator.languages[0].substring(0, 2) : (navigator.language.substring(0, 2) || navigator.userLanguage.substring(0, 2));
-			lang = browserLang.match(/(en|fr|sv)/i) ? browserLang : "en";
+			lang = browserLang.match(/(en|fr|sv|da)/i) ? browserLang : "en";
 		} else {
 			lang = "en";
 		}
