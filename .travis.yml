@@ -29,8 +29,8 @@ before_script:
     - if [[ "$TARGET" == "PostreSQL" ]]; then psql -c 'create database travis_zonemaster OWNER travis_zonemaster;' -U postgres; fi
     - if [[ "$TARGET" == "PostreSQL" ]]; then cpanm --quiet --notest DBD::Pg; fi
     - if [[ "$TARGET" == "PostreSQL" ]]; then perl -I./lib ./script/create_db_postgresql_9.3.pl; fi
-    - starman --error-log=/tmp/zm_back.log --workers=2 --listen=127.0.0.1:5000 -I./lib/ ./script/zonemaster_webbackend.psgi &
-    - perl -I./lib ./script/zm_wb_daemon start
+    - starman --error-log=/tmp/zm_back.log --workers=2 --listen=127.0.0.1:5000 -I./lib/ ./script/zonemaster_backend_rpcapi.psgi &
+    - perl -I./lib ./script/zonemaster_backend_testagent start
     
     - cd ..
     - cd zonemaster-gui
