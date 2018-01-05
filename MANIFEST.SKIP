@@ -4,7 +4,6 @@ maint
 ^t.*sessions
 ^.*\.log
 ^.*\.swp$
-^inc/
 ^Zonemaster-GUI-
 
 #!start included /usr/share/perl/5.20/ExtUtils/MANIFEST.SKIP
