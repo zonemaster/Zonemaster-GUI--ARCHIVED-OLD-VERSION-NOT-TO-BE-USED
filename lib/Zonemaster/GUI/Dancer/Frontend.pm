@@ -17,7 +17,7 @@ use HTTP::Tiny;
 my $faq_url_base = 'https://raw.githubusercontent.com/dotse/zonemaster-gui/master/docs/FAQ/gui-faq-%s.md';
 my %faqs;
 my $http = HTTP::Tiny->new;
-for my $lang ( qw[sv en fr] ) {
+for my $lang ( qw[sv en fr da] ) {
     my $r = $http->get( sprintf( $faq_url_base, $lang ) );
     if ( $r->{success} and $r->{headers}{'content-type'} eq 'text/plain; charset=utf-8' ) {
         $faqs{$lang} = markdown( decode_utf8( $r->{content} ) );

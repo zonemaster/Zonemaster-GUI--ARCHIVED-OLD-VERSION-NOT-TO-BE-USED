@@ -5,6 +5,7 @@ docker/zonemaster_startup.sh
 docs/FAQ/gui-faq-en.md
 docs/FAQ/gui-faq-fr.md
 docs/FAQ/gui-faq-sv.md
+docs/FAQ/gui-faq-da.md
 docs/Installation.md
 docs/starman-zmgui.conf.example
 docs/TranslationGuide.md
@@ -98,6 +99,7 @@ zm_app/public/lang/en.json
 zm_app/public/lang/fr.json
 zm_app/public/lang/ru.json
 zm_app/public/lang/sv.json
+zm_app/public/lang/da.json
 zm_app/views/export.tt
 zm_app/views/index.tt
 zm_app/views/nojs_error_page.tt
