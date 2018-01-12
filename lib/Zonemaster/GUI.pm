@@ -1,6 +1,6 @@
 package Zonemaster::GUI;
 
-our $VERSION = '1.0.8';
+our $VERSION = '1.0.9';
 
 use strict;
 use warnings;
