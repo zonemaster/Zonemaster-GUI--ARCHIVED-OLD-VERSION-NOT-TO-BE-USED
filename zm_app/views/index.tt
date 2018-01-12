@@ -19,7 +19,8 @@
                     <div class="pull-right">
                         <lang lang="en">en</lang> |
                         <lang lang="fr">fr</lang> |
-                        <lang lang="sv">sv</lang>
+                        <lang lang="sv">sv</lang> |
+                        <lang lang="da">da</lang>
                         &nbsp;
                     </div>
                     <div style="position:absolute;display:inline-block;margin-top:30px;">
