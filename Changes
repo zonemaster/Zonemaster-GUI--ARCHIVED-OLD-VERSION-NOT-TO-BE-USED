@@ -1,5 +1,16 @@
 Release history for Zonemaster component Zonemaster-GUI 
 
+v1.0.9 2018-01-12
+Natural Language support:
+- Introducing Danish in GUI (#202, #206, #200, #201, #207, #208)
+
+Fixed:
+- Fixed: Fix broken travis (#203, #205)
+- Update (corrected) gui-faq-en.md (#204)
+- Fixed: Broken style URL in the no-JS interface (#187, #188)
+- Fixed: FAQ doesn't work when browsers preffered language is not en/fr/sv (#184, #185)
+- Module::Install need to be included (#209)
+
 v1.0.8 2017-11-02 Public release
 
 Fixed:
