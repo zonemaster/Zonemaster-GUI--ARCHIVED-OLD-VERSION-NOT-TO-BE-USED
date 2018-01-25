@@ -221,7 +221,7 @@ any [ 'get', 'post' ] => '/nojs' => sub {
                     $module_type = $result->{level} if ( $severity{$module_type} < $severity{ $result->{level} } );
 
                     push( @test_results,
-                        { is_module => 0, message => $result->{message}, type => lc( $result->{level} ) } );
+                        { is_module => 0, message => encode_entities($result->{message}), type => lc( $result->{level} ) } );
                 }
                 $test_results[$last_module_index]->{type} = lc( $module_type );
 
