@@ -1,5 +1,8 @@
 Release history for Zonemaster component Zonemaster-GUI 
 
+v1.0.10 2018-01-26 Security release
+- Fixes a vulnerability in NoJS interface (#213)
+
 v1.0.9 2018-01-12
 Natural Language support:
 - Introducing Danish in GUI (#202, #206, #200, #201, #207, #208)
