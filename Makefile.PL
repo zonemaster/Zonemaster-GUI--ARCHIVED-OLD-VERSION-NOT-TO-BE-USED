@@ -3,10 +3,7 @@ use warnings;
 use inc::Module::Install;
 
 name 'Zonemaster-GUI';
-abstract 'Web frontend for Zonemaster';
-author 'Michal TOMA <toma@nic.fr>';
-license 'bsd';
-version_from 'lib/Zonemaster/GUI.pm';
+all_from 'lib/Zonemaster/GUI.pm';
 
 makemaker_args(
     PL_FILES  => {},
