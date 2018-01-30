@@ -4,6 +4,8 @@ use inc::Module::Install;
 
 name 'Zonemaster-GUI';
 all_from 'lib/Zonemaster/GUI.pm';
+repository 'https://github.com/dotse/zonemaster-gui';
+bugtracker 'https://github.com/dotse/zonemaster-gui/issues';
 
 makemaker_args(
     PL_FILES  => {},
