@@ -31,7 +31,7 @@ any [ 'get', 'post' ] => '/export' => sub {
 				$previous_module = $result->{module};
 			}
 
-			push( @test_results, { is_module => 0, message => $result->{message}, class => "alert alert-$result->{level}" } );
+			push( @test_results, { is_module => 0, message => HTML::Entities::encode($result->{message}), class => "alert alert-$result->{level}" } );
 		}
 
 		my $template_params;
