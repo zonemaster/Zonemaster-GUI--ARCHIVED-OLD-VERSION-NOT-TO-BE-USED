@@ -1,3 +1,14 @@
+# STATUS INFORMATION
+
+*This is an old implementation of GUI for Zonemaster. It is not supported and it does not work
+with the current version of Zonemaster. The current implementation is a total rewrite. Last
+update of this code was 2018-02-23 and it was archived on 2021-07-05.*
+
+*Go to https://github.com/zonemaster/zonemaster instead.*
+
+---------------------
+---------------------
+
 Zonemaster
 ==========
 
